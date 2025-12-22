@@ -1,42 +1,314 @@
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-@media (prefers-color-scheme: dark) {
+/* ============================================ */
+/* CSS VARIABLES                                */
+/* ============================================ */
+
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: 0 0% 100%;
+    --foreground: 25 20% 25%; /* Updated to warmer brown tone */
+    --card: 0 0% 100%;
+    --card-foreground: 25 20% 25%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 25 20% 25%;
+    
+    /* UPDATED: Primary is now Earth Brown */
+    --primary: 25 25% 38%; /* Earth Brown #7A5C4A */
+    --primary-foreground: 35 30% 92%; /* Lotus Beige for text on brown */
+    
+    /* UPDATED: Secondary is now Lotus Beige */
+    --secondary: 35 30% 92%; /* Lotus Beige #EFE7DA */
+    --secondary-foreground: 25 25% 38%; /* Earth Brown for text on beige */
+    
+    --destructive: 0 84. 2% 60. 2%;
+    --destructive-foreground: 0 0% 98%;
+    
+    /* UPDATED: Muted colors with earth tones */
+    --muted: 35 25% 88%; /* Beige-ish muted */
+    --muted-foreground: 25 15% 45%; /* Brown-ish text */
+    
+    /* UPDATED: Accent with earth tones */
+    --accent: 35 30% 88%; /* Light beige */
+    --accent-foreground: 25 25% 38%; /* Earth brown */
+    
+    /* UPDATED: Border with subtle beige */
+    --border: 35 20% 85%;
+    --input: 35 20% 85%;
+    --ring: 25 25% 38%; /* Earth Brown focus ring */
+    
+    --radius: 0.5rem;
+    
+    /* Custom Yoga Colors (Sage/Rose) - Keep for backward compatibility */
+    --sage-light: 142 30% 92%;
+    --sage:  142 40% 75%;
+    --sage-dark:  142 50% 45%;
+    --rose-light:  350 100% 95%;
+    --rose: 350 100% 80%;
+    --cream-light: 40 100% 97%;
+    --cream-dark:  40 20% 85%;
+    
+    /* Earth Brown & Lotus Beige Theme - Direct access */
+    --earth-brown:  25 25% 38%; /* #7A5C4A */
+    --earth-brown-dark: 25 30% 28%; /* Darker brown */
+    --earth-brown-light: 25 20% 55%; /* Lighter brown */
+    
+    --lotus-beige: 35 30% 92%; /* #EFE7DA */
+    --lotus-beige-dark: 35 25% 80%; /* Darker beige */
+    --lotus-beige-light: 35 35% 96%; /* Lighter beige */
+    
+    /* Chart Colors */
+    --chart-1: 25 25% 38%; /* Updated to earth brown */
+    --chart-2: 35 30% 92%; /* Updated to lotus beige */
+    --chart-3: 25 30% 28%;
+    --chart-4: 35 25% 80%;
+    --chart-5: 25 20% 55%;
+  }
+
+  .dark {
+    --background: 25 30% 12%; /* Dark brown background */
+    --foreground: 35 30% 92%; /* Beige text */
+    --card:  25 28% 15%;
+    --card-foreground:  35 30% 92%;
+    --popover: 25 28% 15%;
+    --popover-foreground: 35 30% 92%;
+    --primary: 25 25% 48%; /* Lighter brown for dark mode */
+    --primary-foreground: 35 30% 92%;
+    --secondary:  25 20% 20%;
+    --secondary-foreground:  35 30% 92%;
+    --muted: 25 20% 20%;
+    --muted-foreground: 35 15% 65%;
+    --accent: 25 20% 25%;
+    --accent-foreground: 35 30% 92%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 25 20% 25%;
+    --input: 25 20% 25%;
+    --ring: 25 25% 48%;
+    
+    /* Dark mode earth tones */
+    --earth-brown: 25 25% 48%;
+    --earth-brown-dark: 25 30% 35%;
+    --earth-brown-light: 25 20% 60%;
+    --lotus-beige: 35 25% 75%;
+    --lotus-beige-dark: 35 20% 60%;
+    --lotus-beige-light: 35 30% 85%;
+    
+    --chart-1: 25 25% 48%;
+    --chart-2: 35 25% 75%;
+    --chart-3: 25 30% 35%;
+    --chart-4: 35 20% 60%;
+    --chart-5: 25 20% 60%;
   }
 }
 
-html,
-body {
-  max-width: 100vw;
-  overflow-x: hidden;
+/* ============================================ */
+/* BASE STYLES                                  */
+/* ============================================ */
+
+@layer base {
+  * {
+    border-color: hsl(var(--border));
+  }
+  
+  body {
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+    font-family: var(--font-inter), system-ui, -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-playfair), serif;
+  }
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+/* ============================================ */
+/* UTILITIES                                    */
+/* ============================================ */
+
+@layer utilities {
+  .section-padding {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  
+  @media (min-width: 640px) {
+    .section-padding {
+      padding-left:  1.5rem;
+      padding-right: 1.5rem;
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    .section-padding {
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+  }
+
+  .heading-display {
+    font-weight: 700;
+    letter-spacing: -0.025em;
+  }
+
+  .heading-section {
+    font-weight: 700;
+    letter-spacing: -0.025em;
+  }
+
+  /* Sage/Rose Custom Background Colors */
+  .bg-sage-light {
+    background-color:  hsl(var(--sage-light));
+  }
+
+  .bg-sage {
+    background-color: hsl(var(--sage));
+  }
+
+  .bg-sage-dark {
+    background-color:  hsl(var(--sage-dark));
+  }
+
+  .bg-rose-light {
+    background-color: hsl(var(--rose-light));
+  }
+
+  .bg-rose {
+    background-color: hsl(var(--rose));
+  }
+
+  .bg-cream-light {
+    background-color: hsl(var(--cream-light));
+  }
+
+  .bg-cream-dark {
+    background-color:  hsl(var(--cream-dark));
+  }
+
+  /* Earth Brown Colors */
+  .bg-earth-brown {
+    background-color:  hsl(var(--earth-brown));
+  }
+
+  .bg-earth-brown-dark {
+    background-color: hsl(var(--earth-brown-dark));
+  }
+
+  .bg-earth-brown-light {
+    background-color: hsl(var(--earth-brown-light));
+  }
+
+  .text-earth-brown {
+    color: hsl(var(--earth-brown));
+  }
+
+  .border-earth-brown {
+    border-color: hsl(var(--earth-brown));
+  }
+
+  /* Lotus Beige Colors */
+  .bg-lotus-beige {
+    background-color: hsl(var(--lotus-beige));
+  }
+
+  .bg-lotus-beige-dark {
+    background-color: hsl(var(--lotus-beige-dark));
+  }
+
+  .bg-lotus-beige-light {
+    background-color: hsl(var(--lotus-beige-light));
+  }
+
+  .text-lotus-beige {
+    color: hsl(var(--lotus-beige));
+  }
+
+  .border-lotus-beige {
+    border-color: hsl(var(--lotus-beige));
+  }
+
+  /* Custom Text Colors */
+  .text-sage {
+    color: hsl(var(--sage));
+  }
+
+  .text-sage-dark {
+    color: hsl(var(--sage-dark));
+  }
+
+  .text-rose {
+    color: hsl(var(--rose));
+  }
+
+  /* Custom Border Colors */
+  .border-sage {
+    border-color: hsl(var(--sage));
+  }
+
+  .border-rose {
+    border-color: hsl(var(--rose));
+  }
 }
 
-* {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
+/* ============================================ */
+/* SCROLLBAR                                    */
+/* ============================================ */
+
+::-webkit-scrollbar {
+  width:  10px;
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
+::-webkit-scrollbar-track {
+  background-color: hsl(var(--background));
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
+::-webkit-scrollbar-thumb {
+  background-color: hsl(var(--primary) / 0.5);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: hsl(var(--primary));
+}
+
+/* ============================================ */
+/* SELECTION                                    */
+/* ============================================ */
+
+::selection {
+  background-color:  hsl(var(--primary) / 0.3);
+  color: hsl(var(--foreground));
+}
+
+/* ============================================ */
+/* FOCUS                                        */
+/* ============================================ */
+
+:focus-visible {
+  outline: 2px solid hsl(var(--ring));
+  outline-offset: 2px;
+}
+
+/* ============================================ */
+/* ACCESSIBILITY                                */
+/* ============================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }

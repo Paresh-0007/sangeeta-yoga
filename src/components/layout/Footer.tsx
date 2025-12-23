@@ -1,7 +1,16 @@
 "use client";
 
 import Link from "next/link";
-import { Instagram, Youtube, Mail, Phone } from "lucide-react";
+import Image from "next/image";
+import {
+  Instagram,
+  Youtube,
+  Mail,
+  Phone,
+  Facebook,
+  Twitter,
+  MapPin,
+} from "lucide-react";
 import { useEffect } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -12,74 +21,127 @@ export function Footer() {
   useEffect(() => {
     gsap.from("footer", {
       scrollTrigger: {
-        trigger:  "footer",
+        trigger: "footer",
         start: "top bottom",
         toggleActions: "play none none reverse",
       },
       opacity: 0,
-      y:  50,
+      y: 50,
       duration: 0.8,
       ease: "power3.out",
     });
   }, []);
 
   return (
-    <footer className="bg-card border-t border-border">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
-          <div className="space-y-4">
-            <Link href="/" className="inline-block group">
-              <span className="font-heading text-2xl font-semibold text-primary group-hover:scale-105 transition-transform inline-block">
-                StayFit
-              </span>
-              <span className="font-heading text-2xl text-foreground">
-                {" "}
-                with Sangeeta
+    <footer className="bg-earth-brown-dark text-white">
+      {/* Top Section */}
+      <div className="border-b border-white/10">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-6">
+            {/* Logo */}
+            <Link href="/" className="inline-flex items-center gap-3">
+              {/* add logo */}
+              <Image
+                src="/logo-white.svg"
+                alt="StayFit with Sangeeta Logo"
+                width={150}
+                height={50}
+                className=""
+              />
+              <span className="font-heading text-3xl font-bold text-white group-hover:text-lotus-beige transition-colors">
+                StayFit with Sangeeta
               </span>
             </Link>
-            <p className="text-muted-foreground text-sm max-w-xs">
-              Personalized yoga for mind, body, and soul.  Transform your life
-              through the ancient practice of yoga.
-            </p>
+
+            {/* Social Media Icons */}
             <div className="flex gap-4">
               <a
-                href="https://instagram.com"
+                href="https://facebook.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-muted-foreground hover:text-primary transition-all duration-300 hover:scale-110"
-                aria-label="Instagram"
+                className="w-12 h-12 rounded-full bg-white/10 hover:bg-white hover:text-earth-brown flex items-center justify-center transition-all duration-300 hover:scale-110"
+                aria-label="Facebook"
               >
-                <Instagram className="h-5 w-5" />
+                <Facebook className="h-5 w-5" />
               </a>
               <a
                 href="https://youtube.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-muted-foreground hover:text-primary transition-all duration-300 hover:scale-110"
+                className="w-12 h-12 rounded-full bg-white/10 hover:bg-white hover:text-earth-brown flex items-center justify-center transition-all duration-300 hover:scale-110"
                 aria-label="YouTube"
               >
                 <Youtube className="h-5 w-5" />
               </a>
+              <a
+                href="https://twitter.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-12 h-12 rounded-full bg-white/10 hover:bg-white hover:text-earth-brown flex items-center justify-center transition-all duration-300 hover: scale-110"
+                aria-label="Twitter"
+              >
+                <Twitter className="h-5 w-5" />
+              </a>
+              <a
+                href="https://instagram.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-12 h-12 rounded-full bg-white/10 hover:bg-white hover:text-earth-brown flex items-center justify-center transition-all duration-300 hover:scale-110"
+                aria-label="Instagram"
+              >
+                <Instagram className="h-5 w-5" />
+              </a>
             </div>
           </div>
+        </div>
+      </div>
 
-          <div>
-            <h3 className="font-heading text-lg font-semibold text-foreground mb-4">
-              Quick Links
+      {/* Main Content Section */}
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 lg:gap-16">
+          {/* Column 1: StayFit with Sangeeta */}
+          <div className="space-y-6">
+            <h3 className="font-heading text-xl font-semibold text-white">
+              StayFit with Sangeeta
             </h3>
             <ul className="space-y-3">
               <li>
                 <Link
-                  href="/aboutus"
-                  className="text-muted-foreground hover:text-primary transition-colors text-sm inline-block hover:translate-x-1 duration-300"
+                  href="/"
+                  className="text-white/70 hover:text-white transition-colors text-sm inline-block hover:translate-x-1 duration-300"
                 >
-                  About Sangeeta
+                  Home
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/about"
+                  className="text-white/70 hover:text-white transition-colors text-sm inline-block hover:translate-x-1 duration-300"
+                >
+                  About
                 </Link>
               </li>
               <li>
                 <Link
                   href="/classes"
-                  className="text-muted-foreground hover:text-primary transition-colors text-sm inline-block hover:translate-x-1 duration-300"
+                  className="text-white/70 hover:text-white transition-colors text-sm inline-block hover:translate-x-1 duration-300"
+                >
+                  Experience
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* Column 2: Services */}
+          <div className="space-y-6">
+            <h3 className="font-heading text-xl font-semibold text-white">
+              Services
+            </h3>
+            <ul className="space-y-3">
+              <li>
+                <Link
+                  href="/classes"
+                  className="text-white/70 hover:text-white transition-colors text-sm inline-block hover:translate-x-1 duration-300"
                 >
                   Online Classes
                 </Link>
@@ -87,56 +149,98 @@ export function Footer() {
               <li>
                 <Link
                   href="/classes"
-                  className="text-muted-foreground hover:text-primary transition-colors text-sm inline-block hover:translate-x-1 duration-300"
+                  className="text-white/70 hover:text-white transition-colors text-sm inline-block hover:translate-x-1 duration-300"
                 >
-                  Personal Sessions
+                  Schedule
                 </Link>
               </li>
               <li>
                 <Link
                   href="/contact"
-                  className="text-muted-foreground hover:text-primary transition-colors text-sm inline-block hover:translate-x-1 duration-300"
+                  className="text-white/70 hover:text-white transition-colors text-sm inline-block hover:translate-x-1 duration-300"
                 >
-                  Contact
+                  Contact Us
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/terms"
+                  className="text-white/70 hover:text-white transition-colors text-sm inline-block hover:translate-x-1 duration-300"
+                >
+                  Terms & Conditions
                 </Link>
               </li>
             </ul>
           </div>
 
-          <div>
-            <h3 className="font-heading text-lg font-semibold text-foreground mb-4">
-              Get in Touch
+          {/* Column 3: Contact Us */}
+          <div className="space-y-6">
+            <h3 className="font-heading text-xl font-semibold text-white">
+              CONTACT US
             </h3>
-            <ul className="space-y-3">
-              <li>
+            <div className="space-y-4">
+              <p className="text-white/70 text-sm leading-relaxed">
+                StayFit Yoga Studio - Online Classes
+                <br />
+                Available Worldwide via Zoom
+                <br />
+                Mumbai, India
+              </p>
+              <div className="space-y-3">
+                <a
+                  href="tel:+919999999999"
+                  className="text-white text-lg font-semibold hover:text-lotus-beige transition-colors block"
+                >
+                  +91 9999999999
+                </a>
                 <a
                   href="mailto:hello@stayfitwithsangeeta.com"
-                  className="text-muted-foreground hover:text-primary transition-colors text-sm flex items-center gap-2 group"
+                  className="text-lotus-beige hover:text-white transition-colors text-sm block"
                 >
-                  <Mail className="h-4 w-4 group-hover:scale-110 transition-transform" />
                   hello@stayfitwithsangeeta.com
                 </a>
-              </li>
-              <li>
-                <a
-                  href="https://wa.me/919999999999"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-muted-foreground hover:text-primary transition-colors text-sm flex items-center gap-2 group"
-                >
-                  <Phone className="h-4 w-4 group-hover:scale-110 transition-transform" />
-                  WhatsApp Us
-                </a>
-              </li>
-            </ul>
+              </div>
+            </div>
           </div>
         </div>
+      </div>
 
-        <div className="mt-12 pt-8 border-t border-border">
-          <p className="text-center text-muted-foreground text-sm">
-            © {new Date().getFullYear()} StayFit with Sangeeta. All rights
-            reserved.
-          </p>
+      {/* Our Location Section (Optional - if you have physical location) */}
+      <div className="border-t border-white/10">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+            <h3 className="font-heading text-lg font-semibold text-white">
+              Our Locations
+            </h3>
+            <button
+              className="px-6 py-2 rounded-full bg-white/10 hover:bg-white hover:text-earth-brown transition-all duration-300 text-sm font-medium flex items-center gap-2"
+              aria-label="View locations"
+            >
+              <MapPin className="h-5 w-5" />
+              View Map
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {/* Bottom Section - Copyright */}
+      <div className="border-t border-white/10">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-6">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-white/50">
+            <p>
+              Copyright © {new Date().getFullYear()} StayFit with Sangeeta. All
+              rights reserved.
+            </p>
+            <p>
+              Powered by{" "}
+              <Link
+                href="/"
+                className="text-lotus-beige hover:text-white transition-colors font-medium"
+              >
+                StayFit with Sangeeta
+              </Link>
+            </p>
+          </div>
         </div>
       </div>
     </footer>

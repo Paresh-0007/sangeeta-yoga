@@ -81,7 +81,7 @@ const config = {
       },
       fontFamily: {
         sans: ["var(--font-inter)", "sans-serif"],
-        heading:  ["var(--font-playfair)", "serif"],
+        heading:  ["var(--font-dancing-script)", "serif"],
       },
       keyframes: {
         "accordion-down": {

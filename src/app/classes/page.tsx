@@ -13,9 +13,15 @@ import {
   ArrowRight,
   CheckCircle,
   Sparkles,
+  Heart,
+  Leaf,
+  Flower2,
+  Star,
+  Zap,
 } from "lucide-react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Image from "next/image";
 
 // Register GSAP plugins
 if (typeof window !== "undefined") {
@@ -27,7 +33,7 @@ const mainServices = [
     icon: Users,
     title: "Online Group Classes",
     description: 
-      "Join live group sessions with students from around the world.Perfect for those who thrive in community energy.",
+      "Join live group sessions with students from around the world. Perfect for those who thrive in community energy.",
     features: [
       "Live interactive sessions via Zoom",
       "Small batch sizes for personal attention",
@@ -35,11 +41,12 @@ const mainServices = [
       "Replays available for 24 hours",
     ],
     highlight: "Most Popular",
+    color: "from-earth-brown to-earth-brown-dark",
   },
   {
-    icon:  User,
+    icon:   User,
     title: "Personal Sessions",
-    description:
+    description: 
       "One-on-one attention with customized yoga plans designed specifically for your body, goals, and schedule.",
     features: [
       "Completely personalized program",
@@ -48,6 +55,7 @@ const mainServices = [
       "Direct WhatsApp support",
     ],
     highlight: "Best Results",
+    color: "from-lotus-beige to-earth-brown-light",
   },
 ];
 
@@ -55,91 +63,136 @@ const additionalServices = [
   {
     icon: Play,
     title: "Pre-recorded Courses",
-    description:
-      "Learn at your own pace with professionally recorded yoga courses.",
+    description: 
+      "Learn at your own pace with professionally recorded yoga courses covering various styles and levels.",
+    image: "/services/prerecorded.jpg",
   },
   {
-    icon:  Calendar,
+    icon:   Calendar,
     title: "Workshops & Retreats",
     description:
-      "Deep-dive sessions on specific topics and immersive yoga experiences.",
+      "Deep-dive sessions on specific topics and immersive yoga experiences for complete transformation.",
+    image: "/services/workshops.jpg",
   },
 ];
 
 const yogaStyles = [
   {
     name: "Hatha Yoga",
-    description:  "Foundation practice focusing on postures and breathing",
+    description:   "Foundation practice focusing on postures and breathing",
+    icon: "🧘‍♀️",
+    level: "Beginner Friendly",
   },
   {
-    name:  "Customized Flow",
-    description: "Sequences designed for your specific needs",
+    name:   "Customized Flow",
+    description:  "Sequences designed for your specific needs",
+    icon: "✨",
+    level: "All Levels",
   },
   {
     name: "Ashtanga",
     description: "Dynamic, physically demanding style for building strength",
+    icon: "💪",
+    level: "Intermediate",
   },
   {
     name: "Yin Yoga",
-    description:  "Slow-paced practice targeting deep connective tissues",
+    description:   "Slow-paced practice targeting deep connective tissues",
+    icon: "🌙",
+    level: "All Levels",
   },
   {
     name: "Prenatal/Postnatal",
     description: "Safe practices for expecting and new mothers",
+    icon:  "🤰",
+    level: "Specialized",
   },
   {
     name: "Therapeutic Yoga",
-    description: "Healing-focused practice for specific health conditions",
+    description:  "Healing-focused practice for specific health conditions",
+    icon: "❤️",
+    level: "All Levels",
   },
 ];
 
 const specializations = [
-  { name: "Weight Loss", icon: "⚡" },
-  { name: "Stress & Anxiety Relief", icon: "🧘" },
-  { name: "Back Pain Management", icon: "💪" },
-  { name:  "PCOD Care", icon: "🌸" },
-  { name: "Diabetes Management", icon: "❤️" },
-  { name: "Corporate Wellness", icon: "💼" },
-  { name:  "Cancer Rehabilitation", icon: "🌟" },
+  { name: "Weight Loss", icon: "⚡", color: "bg-yellow-100 text-yellow-700" },
+  { name: "Stress & Anxiety Relief", icon: "🧘", color: "bg-blue-100 text-blue-700" },
+  { name: "Back Pain Management", icon: "💪", color: "bg-red-100 text-red-700" },
+  { name:   "PCOD Care", icon: "🌸", color: "bg-pink-100 text-pink-700" },
+  { name: "Diabetes Management", icon: "❤️", color: "bg-purple-100 text-purple-700" },
+  { name:  "Corporate Wellness", icon: "💼", color: "bg-green-100 text-green-700" },
+  { name:   "Cancer Rehabilitation", icon: "🌟", color: "bg-orange-100 text-orange-700" },
+  { name: "Flexibility Training", icon: "🤸", color: "bg-teal-100 text-teal-700" },
+];
+
+const testimonials = [
+  {
+    quote: "The online group classes are fantastic! I love the energy and Sangeeta's attention to detail.",
+    author: "Meera K.",
+    program: "Online Group Classes",
+  },
+  {
+    quote:  "Personal sessions helped me overcome my back pain.  Highly recommend!",
+    author:  "Rajesh M.",
+    program: "Personal Sessions",
+  },
 ];
 
 export default function Classes() {
   const containerRef = useRef<HTMLDivElement>(null);
   const heroRef = useRef<HTMLDivElement>(null);
-  const servicesRef = useRef<HTMLDivElement>(null);
-  const stylesRef = useRef<HTMLDivElement>(null);
-  const specializationsRef = useRef<HTMLDivElement>(null);
-  const scheduleRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (typeof window === "undefined") return;
 
     const ctx = gsap.context(() => {
-      // Hero Section Animation
+      // Hero Section Animation with Margin
       const heroTimeline = gsap.timeline({
-        defaults: { ease: "power3.out", duration: 0.8 },
+        defaults: { ease: "power3.out" },
       });
 
       heroTimeline
-        .fromTo(
-          ".hero-title",
-          { opacity: 0, y: 50 },
-          { opacity: 1, y: 0, duration: 1 }
+        .from(".hero-section", {
+          marginTop: "20vh",
+          duration: 1.2,
+          ease: "power2.inOut",
+        })
+        .from(
+          ".hero-badge",
+          {
+            opacity:  0,
+            scale: 0.8,
+            duration: 0.6,
+          },
+          "-=0.8"
         )
-        .fromTo(
+        .from(
+          ".hero-title",
+          {
+            opacity:  0,
+            y: 30,
+            duration: 1,
+          },
+          "-=0.6"
+        )
+        .from(
           ".hero-description",
-          { opacity: 0, y: 30 },
-          { opacity: 1, y: 0 },
+          {
+            opacity:  0,
+            y: 20,
+            duration: 0.8,
+          },
           "-=0.5"
         );
 
-      // Featured Programs Section ScrollTrigger
+      // Services Section ScrollTrigger
       gsap.fromTo(
         ".services-header",
         { opacity: 0, y: 30 },
         {
           opacity: 1,
-          y: 0,
+          y:  0,
           duration: 0.8,
           ease: "power3.out",
           scrollTrigger: {
@@ -152,10 +205,10 @@ export default function Classes() {
 
       gsap.fromTo(
         ".main-service-card",
-        { opacity:  0, y: 60 },
+        { opacity:   0, y: 60 },
         {
           opacity: 1,
-          y:  0,
+          y:   0,
           duration: 0.8,
           stagger: 0.2,
           ease: "power3.out",
@@ -169,14 +222,14 @@ export default function Classes() {
 
       gsap.fromTo(
         ".additional-service-card",
-        { opacity: 0, x: -30 },
+        { opacity:  0, scale: 0.9 },
         {
           opacity: 1,
-          x:  0,
+          scale:  1,
           duration: 0.6,
           stagger: 0.15,
-          ease: "power3.out",
-          scrollTrigger: {
+          ease: "back.out(1.7)",
+          scrollTrigger:  {
             trigger: ".additional-services",
             start: "top 80%",
             toggleActions: "play none none none",
@@ -187,10 +240,10 @@ export default function Classes() {
       // Yoga Styles Section ScrollTrigger
       gsap.fromTo(
         ".styles-header",
-        { opacity:  0, y: 30 },
+        { opacity:   0, y: 30 },
         {
-          opacity:  1,
-          y: 0,
+          opacity:   1,
+          y:  0,
           duration: 0.8,
           ease: "power3.out",
           scrollTrigger: {
@@ -203,14 +256,14 @@ export default function Classes() {
 
       gsap.fromTo(
         ".style-card",
-        { opacity:  0, scale: 0.9 },
+        { opacity:   0, scale: 0.9 },
         {
-          opacity: 1,
-          scale:  1,
+          opacity:  1,
+          scale:   1,
           duration: 0.6,
           stagger: 0.1,
           ease: "back.out(1.7)",
-          scrollTrigger:  {
+          scrollTrigger:   {
             trigger: ".styles-section",
             start: "top 70%",
             toggleActions: "play none none none",
@@ -224,12 +277,12 @@ export default function Classes() {
         { opacity: 0, x: -50 },
         {
           opacity: 1,
-          x:  0,
+          x:   0,
           duration: 1,
           ease: "power3.out",
           scrollTrigger: {
             trigger: ".specializations-section",
-            start:  "top 70%",
+            start:   "top 70%",
             toggleActions: "play none none none",
           },
         }
@@ -240,14 +293,14 @@ export default function Classes() {
         { opacity: 0, scale: 0.8 },
         {
           opacity: 1,
-          scale: 1,
+          scale:  1,
           duration: 0.5,
           stagger: 0.1,
           ease: "back.out(1.7)",
           scrollTrigger: {
             trigger: ".specializations-section",
             start: "top 70%",
-            toggleActions:  "play none none none",
+            toggleActions:   "play none none none",
           },
         }
       );
@@ -257,12 +310,30 @@ export default function Classes() {
         { opacity: 0, scale: 0.9 },
         {
           opacity: 1,
-          scale:  1,
+          scale:   1,
           duration: 1,
           ease: "power3.out",
           scrollTrigger: {
             trigger: ".specializations-section",
             start: "top 70%",
+            toggleActions:  "play none none none",
+          },
+        }
+      );
+
+      // Testimonials ScrollTrigger
+      gsap.fromTo(
+        ".testimonial-card",
+        { opacity: 0, y: 40 },
+        {
+          opacity: 1,
+          y:  0,
+          duration: 0.8,
+          stagger: 0.2,
+          ease: "power3.out",
+          scrollTrigger:  {
+            trigger: ".testimonials-section",
+            start: "top 75%",
             toggleActions: "play none none none",
           },
         }
@@ -270,28 +341,11 @@ export default function Classes() {
 
       // Schedule Section ScrollTrigger
       gsap.fromTo(
-        ".schedule-info",
-        { opacity: 0, y: 20 },
-        {
-          opacity: 1,
-          y:  0,
-          duration: 0.6,
-          stagger: 0.15,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: ".schedule-section",
-            start:  "top 80%",
-            toggleActions: "play none none none",
-          },
-        }
-      );
-
-      gsap.fromTo(
         ".schedule-content",
         { opacity: 0, y: 40 },
         {
           opacity: 1,
-          y:  0,
+          y:   0,
           duration: 0.8,
           ease: "power3.out",
           scrollTrigger: {
@@ -309,16 +363,35 @@ export default function Classes() {
   }, []);
 
   return (
-    <div ref={containerRef}>
+    <div ref={containerRef} className="relative overflow-hidden">
       {/* Hero Section */}
-      <section ref={heroRef} className="hero-section relative py-20 lg:py-28">
-        <div className="absolute inset-0 bg-gradient-to-b from-lotus-beige-light/50 to-background" />
-        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg: px-8">
-          <div className="text-center max-w-3xl mx-auto">
-            <h1 className="hero-title text-5xl lg:text-6xl font-bold text-foreground mb-6">
-              Classes & <span className="text-primary">Programs</span>
+      <section ref={heroRef} className="hero-section relative py-20 lg:py-40 bg-gradient-to-b from-lotus-beige-light/50 to-background overflow-hidden">
+        {/* Decorative Background */}
+        <div className="absolute inset-0">
+          <div className="absolute top-10 right-10 w-72 h-72 bg-earth-brown/5 rounded-full blur-3xl animate-pulse" />
+          <div
+            className="absolute bottom-20 left-10 w-96 h-96 bg-lotus-beige/30 rounded-full blur-3xl animate-pulse"
+            style={{ animationDelay: "1s" }}
+          />
+          {/* Floating Elements */}
+          <div className="absolute top-20 left-[10%] opacity-10">
+            <Leaf className="w-12 h-12 text-earth-brown animate-bounce" style={{ animationDuration: "3s" }} />
+          </div>
+          <div className="absolute top-40 right-[15%] opacity-10">
+            <Flower2 className="w-16 h-16 text-earth-brown-light animate-bounce" style={{ animationDuration: "4s", animationDelay: "0.5s" }} />
+          </div>
+        </div>
+
+        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="text-center max-w-4xl mx-auto">
+            <div className="hero-badge inline-flex items-center gap-2 px-4 py-2 bg-earth-brown/10 rounded-full text-earth-brown text-sm font-medium mb-8">
+              <Sparkles className="h-4 w-4" />
+              Flexible Yoga Programs
+            </div>
+            <h1 className="hero-title text-5xl lg:text-7xl font-bold text-foreground mb-6">
+              Classes & <span className="text-earth-brown">Programs</span>
             </h1>
-            <p className="hero-description text-lg text-muted-foreground">
+            <p className="hero-description text-xl lg:text-2xl text-muted-foreground max-w-3xl mx-auto">
               From live online sessions to personalized one-on-one guidance, find the
               perfect yoga program that fits your lifestyle and goals.
             </p>
@@ -327,70 +400,88 @@ export default function Classes() {
       </section>
 
       {/* Main Services */}
-      <section ref={servicesRef} className="services-section section-padding py-20">
+      <section className="services-section section-padding py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="services-header text-center mb-16">
-            <h2 className="text-4xl font-bold text-foreground mb-4">
+            <h2 className="text-4xl lg:text-5xl font-bold text-foreground mb-4">
               Featured Programs
             </h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto">
-              Choose the learning format that works best for you. Both options
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              Choose the learning format that works best for you.  Both options
               include my signature personalized approach.
             </p>
           </div>
-          <div className="grid lg: grid-cols-2 gap-8">
+          <div className="grid lg:grid-cols-2 gap-8 mb-12">
             {mainServices.map((service, index) => (
               <div
                 key={index}
-                className="main-service-card relative p-8 lg:p-10 rounded-2xl bg-card border border-border hover:border-primary/50 hover:shadow-xl hover:-translate-y-2 transition-all duration-300"
+                className="main-service-card relative group rounded-2xl"
               >
-                {service.highlight && (
-                  <div className="absolute -top-3 left-8 px-4 py-1 bg-primary text-primary-foreground text-sm font-medium rounded-full">
-                    {service.highlight}
+                {/* Background Gradient */}
+                <div className={`absolute inset-0 bg-gradient-to-br ${service.color} opacity-5 group-hover:opacity-10 transition-opacity duration-300`} />
+                
+                <div className="relative p-8 lg:p-10 bg-white border-2 border-transparent group-hover:border-earth-brown/20 rounded-2xl hover:shadow-2xl hover:-translate-y-2 transition-all duration-300">
+                  {service.highlight && (
+                    <div className="absolute -top-4 left-8 px-4 py-1.5 bg-earth-brown text-white text-sm font-medium rounded-full shadow-lg flex items-center gap-2">
+                      <Star className="h-3 w-3 fill-current" />
+                      {service.highlight}
+                    </div>
+                  )}
+                  
+                  <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-earth-brown/10 to-earth-brown/5 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                    <service.icon className="h-8 w-8 text-earth-brown" />
                   </div>
-                )}
-                <div className="w-16 h-16 rounded-xl bg-primary/10 flex items-center justify-center mb-6">
-                  <service.icon className="h-8 w-8 text-primary" />
+                  
+                  <h3 className="text-2xl lg:text-3xl font-bold text-foreground mb-3">
+                    {service.title}
+                  </h3>
+                  <p className="text-muted-foreground mb-6 leading-relaxed">{service.description}</p>
+                  
+                  <ul className="space-y-3 mb-8">
+                    {service.features.map((feature, i) => (
+                      <li key={i} className="flex items-start gap-3">
+                        <CheckCircle className="h-5 w-5 text-earth-brown flex-shrink-0 mt-0.5" />
+                        <span className="text-foreground">{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  
+                  <Button asChild className="group/btn w-full sm:w-auto bg-earth-brown hover:bg-earth-brown-dark">
+                    <Link href="/contact">
+                      Enquire Now
+                      <ArrowRight className="ml-2 h-4 w-4 group-hover/btn:translate-x-1 transition-transform" />
+                    </Link>
+                  </Button>
                 </div>
-                <h3 className="text-2xl font-semibold text-foreground mb-3">
-                  {service.title}
-                </h3>
-                <p className="text-muted-foreground mb-6">{service.description}</p>
-                <ul className="space-y-3 mb-8">
-                  {service.features.map((feature, i) => (
-                    <li key={i} className="flex items-center gap-3">
-                      <CheckCircle className="h-5 w-5 text-primary flex-shrink-0" />
-                      <span className="text-foreground">{feature}</span>
-                    </li>
-                  ))}
-                </ul>
-                <Button asChild className="group">
-                  <Link href="/contact">
-                    Enquire Now
-                    <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                  </Link>
-                </Button>
               </div>
             ))}
           </div>
 
           {/* Additional Services */}
-          <div className="additional-services grid md:grid-cols-2 gap-6 mt-8">
+          <div className="additional-services grid md:grid-cols-2 gap-6">
             {additionalServices.map((service, index) => (
               <div
                 key={index}
-                className="additional-service-card p-6 rounded-xl bg-muted/50 border border-border flex items-start gap-4 hover:bg-muted transition-colors"
+                className="additional-service-card group relative overflow-hidden rounded-2xl bg-gradient-to-br from-earth-brown/5 to-lotus-beige/10 border-2 border-earth-brown/10 hover:border-earth-brown/30 hover:shadow-xl transition-all duration-300"
               >
-                <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
-                  <service.icon className="h-6 w-6 text-primary" />
-                </div>
-                <div>
-                  <h3 className="text-lg font-semibold text-foreground mb-1">
-                    {service.title}
-                  </h3>
-                  <p className="text-muted-foreground text-sm">
-                    {service.description}
-                  </p>
+                <div className="relative p-8">
+                  <div className="flex items-start gap-4 mb-4">
+                    <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-earth-brown/20 to-earth-brown/10 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
+                      <service.icon className="h-7 w-7 text-earth-brown" />
+                    </div>
+                    <div className="flex-1">
+                      <h3 className="text-xl font-bold text-foreground mb-2">
+                        {service.title}
+                      </h3>
+                      <p className="text-muted-foreground">
+                        {service.description}
+                      </p>
+                    </div>
+                  </div>
+                  <Button variant="ghost" className="mt-4 text-earth-brown hover:text-earth-brown-dark hover:bg-earth-brown/5 group/link">
+                    Learn More 
+                    <ArrowRight className="ml-2 h-4 w-4 group-hover/link:translate-x-1 transition-transform" />
+                  </Button>
                 </div>
               </div>
             ))}
@@ -399,27 +490,33 @@ export default function Classes() {
       </section>
 
       {/* Yoga Styles */}
-      <section ref={stylesRef} className="styles-section section-padding bg-card py-20">
-        <div className="mx-auto max-w-7xl px-4 sm: px-6 lg:px-8">
+      <section className="styles-section section-padding bg-gradient-to-br from-lotus-beige-light to-background py-20">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="styles-header text-center mb-16">
-            <h2 className="text-4xl font-bold text-foreground mb-4">
+            <h2 className="text-4xl lg:text-5xl font-bold text-foreground mb-4">
               Yoga Styles I Teach
             </h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto">
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
               With expertise in multiple yoga traditions, I can recommend and teach
-              the style that best suits your needs.
+              the style that best suits your needs. 
             </p>
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {yogaStyles.map((style, index) => (
               <div
                 key={index}
-                className="style-card p-6 rounded-xl bg-background border border-border hover:border-primary/50 hover:shadow-lg transition-all duration-300"
+                className="style-card group p-6 rounded-2xl bg-white border-2 border-transparent hover:border-earth-brown/20 hover:shadow-xl transition-all duration-300 hover:-translate-y-2"
               >
-                <h3 className="text-lg font-semibold text-foreground mb-2">
+                <div className="flex items-start justify-between mb-4">
+                  <span className="text-4xl">{style.icon}</span>
+                  <span className="px-3 py-1 bg-earth-brown/10 text-earth-brown text-xs font-medium rounded-full">
+                    {style.level}
+                  </span>
+                </div>
+                <h3 className="text-xl font-bold text-foreground mb-2 group-hover:text-earth-brown transition-colors">
                   {style.name}
                 </h3>
-                <p className="text-muted-foreground text-sm">{style.description}</p>
+                <p className="text-muted-foreground text-sm leading-relaxed">{style.description}</p>
               </div>
             ))}
           </div>
@@ -427,81 +524,138 @@ export default function Classes() {
       </section>
 
       {/* Specializations */}
-      <section
-        ref={specializationsRef}
-        className="specializations-section section-padding py-20"
-      >
+      <section className="specializations-section section-padding py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             <div className="spec-content">
-              <h2 className="text-4xl font-bold text-foreground mb-6">
+              <h2 className="text-4xl lg:text-5xl font-bold text-foreground mb-6">
                 Specialized Programs for Your Health Goals
               </h2>
-              <p className="text-muted-foreground mb-8">
+              <p className="text-lg text-muted-foreground mb-8">
                 I offer targeted yoga programs designed to address specific health
-                concerns. Each program combines traditional yoga wisdom with modern
-                understanding of the body.
+                concerns.  Each program combines traditional yoga wisdom with modern
+                understanding of the body. 
               </p>
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-2 gap-3">
                 {specializations.map((spec, index) => (
                   <div
                     key={index}
-                    className="spec-item flex items-center gap-3 p-3 rounded-lg bg-lotus-beige-light hover:bg-primary hover:text-white transition-all duration-300 cursor-pointer"
+                    className="spec-item group flex items-center gap-3 p-4 rounded-xl bg-white border-2 border-earth-brown/10 hover:border-earth-brown hover:shadow-lg transition-all duration-300 cursor-pointer hover:-translate-y-1"
                   >
-                    <span className="text-2xl">{spec.icon}</span>
-                    <span className="font-medium text-sm">
+                    <span className="text-2xl group-hover:scale-110 transition-transform">{spec.icon}</span>
+                    <span className="font-medium text-sm text-foreground group-hover:text-earth-brown transition-colors">
                       {spec.name}
                     </span>
                   </div>
                 ))}
               </div>
             </div>
-            <div className="spec-image aspect-square rounded-2xl bg-gradient-to-br from-earth-brown-light to-lotus-beige-light flex items-center justify-center shadow-2xl">
-              <div className="text-center p-8">
-                <div className="w-24 h-24 mx-auto mb-4 rounded-full bg-primary/10 flex items-center justify-center">
-                  <Sparkles className="h-12 w-12 text-primary" />
-                </div>
-                <p className="text-muted-foreground font-medium">
-                  Class Image Placeholder
-                </p>
+            <div className="spec-image relative">
+              <div className="aspect-square rounded-2xl overflow-hidden shadow-2xl border-4 border-earth-brown/10">
+                <Image
+                  src="/specializations-image.jpg"
+                  alt="Yoga Specializations"
+                  fill
+                  className="object-cover"
+                  quality={70}
+                />
               </div>
+              {/* Decorative accents */}
+              <div className="absolute -top-6 -left-6 w-24 h-24 border-t-4 border-l-4 border-earth-brown/30 rounded-tl-3xl" />
+              <div className="absolute -bottom-6 -right-6 w-24 h-24 border-b-4 border-r-4 border-earth-brown/30 rounded-br-3xl" />
             </div>
           </div>
         </div>
       </section>
 
-      {/* Schedule Info */}
-      <section
-        ref={scheduleRef}
-        className="schedule-section section-padding bg-lotus-beige-light py-20"
-      >
-        <div className="mx-auto max-w-4xl text-center px-4 sm:px-6 lg: px-8">
-          <div className="flex justify-center gap-8 mb-8">
-            <div className="schedule-info flex items-center gap-2 text-foreground">
-              <Clock className="h-5 w-5 text-primary" />
-              <span>Flexible Timings</span>
-            </div>
-            <div className="schedule-info flex items-center gap-2 text-foreground">
-              <Video className="h-5 w-5 text-primary" />
-              <span>Live via Zoom</span>
-            </div>
-          </div>
-          <div className="schedule-content">
-            <h2 className="text-4xl font-bold text-foreground mb-6">
-              Ready to Start? 
+      {/* Testimonials */}
+      <section className="testimonials-section section-padding bg-card py-20">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl font-bold text-foreground mb-4">
+              What Students Say
             </h2>
-            <p className="text-lg text-muted-foreground mb-8">
+            <p className="text-muted-foreground">
+              Real feedback from real students
+            </p>
+          </div>
+          <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+            {testimonials.map((testimonial, index) => (
+              <div
+                key={index}
+                className="testimonial-card p-8 rounded-2xl bg-background border border-border hover:shadow-xl transition-shadow"
+              >
+                <div className="flex gap-1 mb-4 text-earth-brown">
+                  {[1, 2, 3, 4, 5].map((i) => (
+                    <Star key={i} className="h-4 w-4 fill-current" />
+                  ))}
+                </div>
+                <p className="text-foreground mb-4 italic">
+                  "{testimonial.quote}"
+                </p>
+                <div>
+                  <p className="font-semibold text-foreground">
+                    {testimonial.author}
+                  </p>
+                  <p className="text-sm text-muted-foreground">
+                    {testimonial.program}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Schedule Section */}
+      <section className="schedule-section relative section-padding py-32 overflow-hidden">
+        {/* Background Image */}
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="/cta-background.jpg"
+            alt="Yoga Background"
+            fill
+            className="object-cover object-center"
+            quality={90}
+          />
+          <div className="absolute inset-0 bg-gradient-to-br from-earth-brown/80 via-earth-brown-dark/70 to-earth-brown/80" />
+        </div>
+
+        {/* Content */}
+        <div className="relative z-10 mx-auto max-w-4xl text-center px-4 sm:px-6 lg:px-8">
+          <div className="schedule-content">
+            <div className="flex justify-center gap-8 mb-8">
+              <div className="flex items-center gap-2 text-white/90 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full">
+                <Clock className="h-5 w-5" />
+                <span className="font-medium">Flexible Timings</span>
+              </div>
+              <div className="flex items-center gap-2 text-white/90 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full">
+                <Video className="h-5 w-5" />
+                <span className="font-medium">Live via Zoom</span>
+              </div>
+            </div>
+            
+            <h2 className="text-4xl lg:text-5xl font-bold text-white mb-6 drop-shadow-lg">
+              Ready to Start Your Journey?
+            </h2>
+            <p className="text-lg lg:text-xl text-white/90 mb-10 max-w-2xl mx-auto drop-shadow-md">
               Not sure which program is right for you? Book a free consultation call
               and let's discuss your goals together.
             </p>
+            
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" asChild className="group">
+              <Button size="lg" asChild className="group bg-white text-earth-brown hover:bg-lotus-beige shadow-2xl">
                 <Link href="/contact">
                   Book Free Consultation
                   <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
                 </Link>
               </Button>
-              <Button size="lg" variant="outline" asChild>
+              <Button
+                size="lg"
+                variant="outline"
+                className="border-2 border-white text-white hover:bg-white hover:text-earth-brown shadow-2xl backdrop-blur-sm bg-white/10"
+                asChild
+              >
                 <a
                   href="https://wa.me/919999999999"
                   target="_blank"

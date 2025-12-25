@@ -72,7 +72,7 @@ export function Header() {
                   priority
                 />  
                 <span className="font-heading text-3xl font-bold text-earth-brown-dark group-hover:text-earth-brown transition-colors">
-                  StayFit with Sangeeta
+                  stayfit with sangeeta
                 </span>
               </div>
             </Link>
@@ -195,11 +195,11 @@ export function Header() {
             {/* Mobile Contact Info */}
             <div className="pt-4 mt-4 border-t border-earth-brown/10 space-y-2">
               <a
-                href="tel:+919999999999"
+                href="tel:+917977319411"
                 className="flex items-center gap-3 text-sm text-muted-foreground hover:text-earth-brown transition-colors"
               >
                 <Phone className="h-4 w-4" />
-                <span>+91 9999999999</span>
+                <span>+917977319411</span>
               </a>
             </div>
           </div>

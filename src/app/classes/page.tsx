@@ -32,7 +32,7 @@ const mainServices = [
   {
     icon: Users,
     title: "Online Group Classes",
-    description: 
+    description:
       "Join live group sessions with students from around the world. Perfect for those who thrive in community energy.",
     features: [
       "Live interactive sessions via Zoom",
@@ -44,9 +44,9 @@ const mainServices = [
     color: "from-earth-brown to-earth-brown-dark",
   },
   {
-    icon:   User,
+    icon: User,
     title: "Personal Sessions",
-    description: 
+    description:
       "One-on-one attention with customized yoga plans designed specifically for your body, goals, and schedule.",
     features: [
       "Completely personalized program",
@@ -63,12 +63,12 @@ const additionalServices = [
   {
     icon: Play,
     title: "Pre-recorded Courses",
-    description: 
+    description:
       "Learn at your own pace with professionally recorded yoga courses covering various styles and levels.",
     image: "/services/prerecorded.jpg",
   },
   {
-    icon:   Calendar,
+    icon: Calendar,
     title: "Workshops & Retreats",
     description:
       "Deep-dive sessions on specific topics and immersive yoga experiences for complete transformation.",
@@ -79,13 +79,13 @@ const additionalServices = [
 const yogaStyles = [
   {
     name: "Hatha Yoga",
-    description:   "Foundation practice focusing on postures and breathing",
+    description: "Foundation practice focusing on postures and breathing",
     icon: "🧘‍♀️",
     level: "Beginner Friendly",
   },
   {
-    name:   "Customized Flow",
-    description:  "Sequences designed for your specific needs",
+    name: "Customized Flow",
+    description: "Sequences designed for your specific needs",
     icon: "✨",
     level: "All Levels",
   },
@@ -97,19 +97,19 @@ const yogaStyles = [
   },
   {
     name: "Yin Yoga",
-    description:   "Slow-paced practice targeting deep connective tissues",
+    description: "Slow-paced practice targeting deep connective tissues",
     icon: "🌙",
     level: "All Levels",
   },
   {
     name: "Prenatal/Postnatal",
     description: "Safe practices for expecting and new mothers",
-    icon:  "🤰",
+    icon: "🤰",
     level: "Specialized",
   },
   {
     name: "Therapeutic Yoga",
-    description:  "Healing-focused practice for specific health conditions",
+    description: "Healing-focused practice for specific health conditions",
     icon: "❤️",
     level: "All Levels",
   },
@@ -117,24 +117,70 @@ const yogaStyles = [
 
 const specializations = [
   { name: "Weight Loss", icon: "⚡", color: "bg-yellow-100 text-yellow-700" },
-  { name: "Stress & Anxiety Relief", icon: "🧘", color: "bg-blue-100 text-blue-700" },
-  { name: "Back Pain Management", icon: "💪", color: "bg-red-100 text-red-700" },
-  { name:   "PCOD Care", icon: "🌸", color: "bg-pink-100 text-pink-700" },
-  { name: "Diabetes Management", icon: "❤️", color: "bg-purple-100 text-purple-700" },
-  { name:  "Corporate Wellness", icon: "💼", color: "bg-green-100 text-green-700" },
-  { name:   "Cancer Rehabilitation", icon: "🌟", color: "bg-orange-100 text-orange-700" },
-  { name: "Flexibility Training", icon: "🤸", color: "bg-teal-100 text-teal-700" },
+  {
+    name: "Stress & Anxiety Relief",
+    icon: "🧘",
+    color: "bg-blue-100 text-blue-700",
+  },
+  {
+    name: "Back Pain Management",
+    icon: "💪",
+    color: "bg-red-100 text-red-700",
+  },
+  { name: "PCOD Care", icon: "🌸", color: "bg-pink-100 text-pink-700" },
+  {
+    name: "Diabetes Management",
+    icon: "❤️",
+    color: "bg-purple-100 text-purple-700",
+  },
+  {
+    name: "Corporate Wellness",
+    icon: "💼",
+    color: "bg-green-100 text-green-700",
+  },
+  {
+    name: "Cancer Rehabilitation",
+    icon: "🌟",
+    color: "bg-orange-100 text-orange-700",
+  },
+  {
+    name: "Flexibility Training",
+    icon: "🤸",
+    color: "bg-teal-100 text-teal-700",
+  },
+  {
+    name: "Breathing & Meditation",
+    icon: "🕉️",
+    color: "bg-indigo-100 text-indigo-700",
+  },
+  {
+    name: "Asthama Relief",
+    icon: "😮‍💨",
+    color: "bg-indigo-100 text-indigo-700",
+  },
+  {
+    name: "Prenatal & Postnatal",
+    icon: "🤰",
+    color: "bg-pink-100 text-pink-700",
+  },
+  {
+    name: "Strength Building",
+    icon: "🏋️",
+    color: "bg-red-100 text-red-700",
+  }
 ];
 
 const testimonials = [
   {
-    quote: "The online group classes are fantastic! I love the energy and Sangeeta's attention to detail.",
+    quote:
+      "The online group classes are fantastic! I love the energy and Sangeeta's attention to detail.",
     author: "Meera K.",
     program: "Online Group Classes",
   },
   {
-    quote:  "Personal sessions helped me overcome my back pain.  Highly recommend!",
-    author:  "Rajesh M.",
+    quote:
+      "Personal sessions helped me overcome my back pain.  Highly recommend!",
+    author: "Rajesh M.",
     program: "Personal Sessions",
   },
 ];
@@ -161,7 +207,7 @@ export default function Classes() {
         .from(
           ".hero-badge",
           {
-            opacity:  0,
+            opacity: 0,
             scale: 0.8,
             duration: 0.6,
           },
@@ -170,7 +216,7 @@ export default function Classes() {
         .from(
           ".hero-title",
           {
-            opacity:  0,
+            opacity: 0,
             y: 30,
             duration: 1,
           },
@@ -179,7 +225,7 @@ export default function Classes() {
         .from(
           ".hero-description",
           {
-            opacity:  0,
+            opacity: 0,
             y: 20,
             duration: 0.8,
           },
@@ -192,7 +238,7 @@ export default function Classes() {
         { opacity: 0, y: 30 },
         {
           opacity: 1,
-          y:  0,
+          y: 0,
           duration: 0.8,
           ease: "power3.out",
           scrollTrigger: {
@@ -205,10 +251,10 @@ export default function Classes() {
 
       gsap.fromTo(
         ".main-service-card",
-        { opacity:   0, y: 60 },
+        { opacity: 0, y: 60 },
         {
           opacity: 1,
-          y:   0,
+          y: 0,
           duration: 0.8,
           stagger: 0.2,
           ease: "power3.out",
@@ -222,14 +268,14 @@ export default function Classes() {
 
       gsap.fromTo(
         ".additional-service-card",
-        { opacity:  0, scale: 0.9 },
+        { opacity: 0, scale: 0.9 },
         {
           opacity: 1,
-          scale:  1,
+          scale: 1,
           duration: 0.6,
           stagger: 0.15,
           ease: "back.out(1.7)",
-          scrollTrigger:  {
+          scrollTrigger: {
             trigger: ".additional-services",
             start: "top 80%",
             toggleActions: "play none none none",
@@ -240,10 +286,10 @@ export default function Classes() {
       // Yoga Styles Section ScrollTrigger
       gsap.fromTo(
         ".styles-header",
-        { opacity:   0, y: 30 },
+        { opacity: 0, y: 30 },
         {
-          opacity:   1,
-          y:  0,
+          opacity: 1,
+          y: 0,
           duration: 0.8,
           ease: "power3.out",
           scrollTrigger: {
@@ -256,14 +302,14 @@ export default function Classes() {
 
       gsap.fromTo(
         ".style-card",
-        { opacity:   0, scale: 0.9 },
+        { opacity: 0, scale: 0.9 },
         {
-          opacity:  1,
-          scale:   1,
+          opacity: 1,
+          scale: 1,
           duration: 0.6,
           stagger: 0.1,
           ease: "back.out(1.7)",
-          scrollTrigger:   {
+          scrollTrigger: {
             trigger: ".styles-section",
             start: "top 70%",
             toggleActions: "play none none none",
@@ -277,12 +323,12 @@ export default function Classes() {
         { opacity: 0, x: -50 },
         {
           opacity: 1,
-          x:   0,
+          x: 0,
           duration: 1,
           ease: "power3.out",
           scrollTrigger: {
             trigger: ".specializations-section",
-            start:   "top 70%",
+            start: "top 70%",
             toggleActions: "play none none none",
           },
         }
@@ -293,14 +339,14 @@ export default function Classes() {
         { opacity: 0, scale: 0.8 },
         {
           opacity: 1,
-          scale:  1,
+          scale: 1,
           duration: 0.5,
           stagger: 0.1,
           ease: "back.out(1.7)",
           scrollTrigger: {
             trigger: ".specializations-section",
             start: "top 70%",
-            toggleActions:   "play none none none",
+            toggleActions: "play none none none",
           },
         }
       );
@@ -310,13 +356,13 @@ export default function Classes() {
         { opacity: 0, scale: 0.9 },
         {
           opacity: 1,
-          scale:   1,
+          scale: 1,
           duration: 1,
           ease: "power3.out",
           scrollTrigger: {
             trigger: ".specializations-section",
             start: "top 70%",
-            toggleActions:  "play none none none",
+            toggleActions: "play none none none",
           },
         }
       );
@@ -327,11 +373,11 @@ export default function Classes() {
         { opacity: 0, y: 40 },
         {
           opacity: 1,
-          y:  0,
+          y: 0,
           duration: 0.8,
           stagger: 0.2,
           ease: "power3.out",
-          scrollTrigger:  {
+          scrollTrigger: {
             trigger: ".testimonials-section",
             start: "top 75%",
             toggleActions: "play none none none",
@@ -345,7 +391,7 @@ export default function Classes() {
         { opacity: 0, y: 40 },
         {
           opacity: 1,
-          y:   0,
+          y: 0,
           duration: 0.8,
           ease: "power3.out",
           scrollTrigger: {
@@ -365,35 +411,65 @@ export default function Classes() {
   return (
     <div ref={containerRef} className="relative overflow-hidden">
       {/* Hero Section */}
-      <section ref={heroRef} className="hero-section relative py-20 lg:py-40 bg-gradient-to-b from-lotus-beige-light/50 to-background overflow-hidden">
-        {/* Decorative Background */}
-        <div className="absolute inset-0">
-          <div className="absolute top-10 right-10 w-72 h-72 bg-earth-brown/5 rounded-full blur-3xl animate-pulse" />
+      <section
+        ref={heroRef}
+        className="hero-section relative min-h-[60vh] sm:min-h-[70vh] lg:min-h-[85vh] flex items-center bg-gradient-to-b from-lotus-beige-light/50 to-background overflow-hidden"
+      >
+        {/* Decorative Background Circles */}
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute top-10 right-10 w-48 h-48 sm:w-72 sm:h-72 bg-earth-brown/5 rounded-full blur-3xl animate-pulse" />
           <div
-            className="absolute bottom-20 left-10 w-96 h-96 bg-lotus-beige/30 rounded-full blur-3xl animate-pulse"
+            className="absolute bottom-20 left-10 w-64 h-64 sm:w-96 sm:h-96 bg-lotus-beige/30 rounded-full blur-3xl animate-pulse"
             style={{ animationDelay: "1s" }}
           />
-          {/* Floating Elements */}
-          <div className="absolute top-20 left-[10%] opacity-10">
-            <Leaf className="w-12 h-12 text-earth-brown animate-bounce" style={{ animationDuration: "3s" }} />
-          </div>
-          <div className="absolute top-40 right-[15%] opacity-10">
-            <Flower2 className="w-16 h-16 text-earth-brown-light animate-bounce" style={{ animationDuration: "4s", animationDelay: "0.5s" }} />
-          </div>
+          <div
+            className="absolute top-1/2 right-1/4 w-48 h-48 sm:w-64 sm:h-64 bg-earth-brown-light/10 rounded-full blur-2xl animate-pulse"
+            style={{ animationDelay: "2s" }}
+          />
         </div>
 
-        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        {/* Background Image with Gradient Overlay */}
+        <div className="absolute inset-0">
+          {/* Gradient Overlay - Stronger on mobile for better readability */}
+          <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent z-10" />
+
+          {/* Mobile Background Image (Portrait) */}
+          <Image
+            src="/classes-hero-mobile.jpg"
+            alt="Yoga Classes Mobile"
+            fill
+            className="object-cover object-center opacity-75 block sm:hidden"
+            priority
+            sizes="100vw"
+            quality={75}
+          />
+
+          {/* Desktop Background Image (Landscape) */}
+          <Image
+            src="/classes-hero-desktop.jpg"
+            alt="Yoga Classes Desktop"
+            fill
+            className="object-cover object-center opacity-75 hidden sm:block"
+            priority
+            sizes="100vw"
+            quality={75}
+          />
+        </div>
+
+        {/* Content - Centered */}
+        <div className="relative z-20 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 sm:py-16 w-full">
           <div className="text-center max-w-4xl mx-auto">
-            <div className="hero-badge inline-flex items-center gap-2 px-4 py-2 bg-earth-brown/10 rounded-full text-earth-brown text-sm font-medium mb-8">
-              <Sparkles className="h-4 w-4" />
-              Flexible Yoga Programs
-            </div>
-            <h1 className="hero-title text-5xl lg:text-7xl font-bold text-foreground mb-6">
-              Classes & <span className="text-earth-brown">Programs</span>
+
+            <h1 className="hero-title text-4xl sm:text-5xl lg:text-7xl font-bold text-foreground mb-4 sm:mb-6 drop-shadow-md">
+              Yoga{" "}
+              <span className="text-earth-brown drop-shadow-sm">Classes</span> &
+              Programs
             </h1>
-            <p className="hero-description text-xl lg:text-2xl text-muted-foreground max-w-3xl mx-auto">
-              From live online sessions to personalized one-on-one guidance, find the
-              perfect yoga program that fits your lifestyle and goals.
+
+            <p className="hero-description text-base sm:text-xl lg:text-2xl text-muted-foreground max-w-3xl mx-auto px-4 drop-shadow-sm leading-relaxed">
+              Personalized yoga programs designed for your unique needs. From
+              group sessions to one-on-one training, find the perfect fit for
+              your wellness journey.
             </p>
           </div>
         </div>
@@ -407,7 +483,7 @@ export default function Classes() {
               Featured Programs
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Choose the learning format that works best for you.  Both options
+              Choose the learning format that works best for you. Both options
               include my signature personalized approach.
             </p>
           </div>
@@ -418,25 +494,29 @@ export default function Classes() {
                 className="main-service-card relative group rounded-2xl"
               >
                 {/* Background Gradient */}
-                <div className={`absolute inset-0 bg-gradient-to-br ${service.color} opacity-5 group-hover:opacity-10 transition-opacity duration-300`} />
-                
-                <div className="relative p-8 lg:p-10 bg-white border-2 border-transparent group-hover:border-earth-brown/20 rounded-2xl hover:shadow-2xl hover:-translate-y-2 transition-all duration-300">
+                <div
+                  className={`absolute inset-0 bg-gradient-to-br ${service.color} opacity-5 group-hover:opacity-10 transition-opacity duration-300`}
+                />
+
+                <div className="relative p-8 lg:p-10 bg-white border-2 border-earth-brown/20 group-hover:border-earth-brown rounded-2xl hover:shadow-2xl hover:-translate-y-2 transition-all duration-300">
                   {service.highlight && (
                     <div className="absolute -top-4 left-8 px-4 py-1.5 bg-earth-brown text-white text-sm font-medium rounded-full shadow-lg flex items-center gap-2">
                       <Star className="h-3 w-3 fill-current" />
                       {service.highlight}
                     </div>
                   )}
-                  
+
                   <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-earth-brown/10 to-earth-brown/5 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
                     <service.icon className="h-8 w-8 text-earth-brown" />
                   </div>
-                  
+
                   <h3 className="text-2xl lg:text-3xl font-bold text-foreground mb-3">
                     {service.title}
                   </h3>
-                  <p className="text-muted-foreground mb-6 leading-relaxed">{service.description}</p>
-                  
+                  <p className="text-muted-foreground mb-6 leading-relaxed">
+                    {service.description}
+                  </p>
+
                   <ul className="space-y-3 mb-8">
                     {service.features.map((feature, i) => (
                       <li key={i} className="flex items-start gap-3">
@@ -445,8 +525,11 @@ export default function Classes() {
                       </li>
                     ))}
                   </ul>
-                  
-                  <Button asChild className="group/btn w-full sm:w-auto bg-earth-brown hover:bg-earth-brown-dark">
+
+                  <Button
+                    asChild
+                    className="group/btn w-full sm:w-auto bg-earth-brown hover:bg-earth-brown-dark"
+                  >
                     <Link href="/contact">
                       Enquire Now
                       <ArrowRight className="ml-2 h-4 w-4 group-hover/btn:translate-x-1 transition-transform" />
@@ -478,8 +561,11 @@ export default function Classes() {
                       </p>
                     </div>
                   </div>
-                  <Button variant="ghost" className="mt-4 text-earth-brown hover:text-earth-brown-dark hover:bg-earth-brown/5 group/link">
-                    Learn More 
+                  <Button
+                    variant="ghost"
+                    className="mt-4 text-earth-brown hover:text-earth-brown-dark hover:bg-earth-brown/5 group/link"
+                  >
+                    Learn More
                     <ArrowRight className="ml-2 h-4 w-4 group-hover/link:translate-x-1 transition-transform" />
                   </Button>
                 </div>
@@ -497,15 +583,15 @@ export default function Classes() {
               Yoga Styles I Teach
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              With expertise in multiple yoga traditions, I can recommend and teach
-              the style that best suits your needs. 
+              With expertise in multiple yoga traditions, I can recommend and
+              teach the style that best suits your needs.
             </p>
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {yogaStyles.map((style, index) => (
               <div
                 key={index}
-                className="style-card group p-6 rounded-2xl bg-white border-2 border-transparent hover:border-earth-brown/20 hover:shadow-xl transition-all duration-300 hover:-translate-y-2"
+                className="style-card group p-6 rounded-2xl bg-white border-2 border-earth-brown/20 hover:border-earth-brown hover:shadow-xl transition-all duration-300 hover:-translate-y-2"
               >
                 <div className="flex items-start justify-between mb-4">
                   <span className="text-4xl">{style.icon}</span>
@@ -516,7 +602,9 @@ export default function Classes() {
                 <h3 className="text-xl font-bold text-foreground mb-2 group-hover:text-earth-brown transition-colors">
                   {style.name}
                 </h3>
-                <p className="text-muted-foreground text-sm leading-relaxed">{style.description}</p>
+                <p className="text-muted-foreground text-sm leading-relaxed">
+                  {style.description}
+                </p>
               </div>
             ))}
           </div>
@@ -532,9 +620,9 @@ export default function Classes() {
                 Specialized Programs for Your Health Goals
               </h2>
               <p className="text-lg text-muted-foreground mb-8">
-                I offer targeted yoga programs designed to address specific health
-                concerns.  Each program combines traditional yoga wisdom with modern
-                understanding of the body. 
+                I offer targeted yoga programs designed to address specific
+                health concerns. Each program combines traditional yoga wisdom
+                with modern understanding of the body.
               </p>
               <div className="grid grid-cols-2 gap-3">
                 {specializations.map((spec, index) => (
@@ -542,7 +630,9 @@ export default function Classes() {
                     key={index}
                     className="spec-item group flex items-center gap-3 p-4 rounded-xl bg-white border-2 border-earth-brown/10 hover:border-earth-brown hover:shadow-lg transition-all duration-300 cursor-pointer hover:-translate-y-1"
                   >
-                    <span className="text-2xl group-hover:scale-110 transition-transform">{spec.icon}</span>
+                    <span className="text-2xl group-hover:scale-110 transition-transform">
+                      {spec.icon}
+                    </span>
                     <span className="font-medium text-sm text-foreground group-hover:text-earth-brown transition-colors">
                       {spec.name}
                     </span>
@@ -557,7 +647,7 @@ export default function Classes() {
                   alt="Yoga Specializations"
                   fill
                   className="object-cover"
-                  quality={70}
+                  quality={75}
                 />
               </div>
               {/* Decorative accents */}
@@ -616,7 +706,7 @@ export default function Classes() {
             alt="Yoga Background"
             fill
             className="object-cover object-center"
-            quality={90}
+            quality={75}
           />
           <div className="absolute inset-0 bg-gradient-to-br from-earth-brown/80 via-earth-brown-dark/70 to-earth-brown/80" />
         </div>
@@ -634,17 +724,21 @@ export default function Classes() {
                 <span className="font-medium">Live via Zoom</span>
               </div>
             </div>
-            
+
             <h2 className="text-4xl lg:text-5xl font-bold text-white mb-6 drop-shadow-lg">
               Ready to Start Your Journey?
             </h2>
             <p className="text-lg lg:text-xl text-white/90 mb-10 max-w-2xl mx-auto drop-shadow-md">
-              Not sure which program is right for you? Book a free consultation call
-              and let's discuss your goals together.
+              Not sure which program is right for you? Book a free consultation
+              call and let's discuss your goals together.
             </p>
-            
+
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" asChild className="group bg-white text-earth-brown hover:bg-lotus-beige shadow-2xl">
+              <Button
+                size="lg"
+                asChild
+                className="group bg-white text-earth-brown hover:bg-lotus-beige shadow-2xl"
+              >
                 <Link href="/contact">
                   Book Free Consultation
                   <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
@@ -657,7 +751,7 @@ export default function Classes() {
                 asChild
               >
                 <a
-                  href="https://wa.me/919999999999"
+                  href="https://wa.me/917977319411"
                   target="_blank"
                   rel="noopener noreferrer"
                 >

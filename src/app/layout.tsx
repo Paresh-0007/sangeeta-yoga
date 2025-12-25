@@ -33,92 +33,113 @@ const dancingScript = Dancing_Script({
   weight: "400",
   variable: "--font-dancing-script",
 });
+
 export const metadata: Metadata = {
   metadataBase: new URL(
-    process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"
+    process.env.NEXT_PUBLIC_SITE_URL || "https://stayfitwithsangeeta.com"
   ),
+
   title: {
-    default: "StayFit with Sangeeta | Personalized Online Yoga Classes",
+    default: "StayFit with Sangeeta | Online & Offline Yoga Classes in Mumbai",
     template: "%s | StayFit with Sangeeta",
   },
+
   description:
-    "Transform your life through personalized yoga.  Online group classes and personal sessions available worldwide. Specialized programs for weight loss, stress management, back pain relief, and more.",
+    "StayFit with Sangeeta offers personalized online and offline yoga classes in Mumbai. Programs for women, men, PCOD, weight loss, stress management, prenatal yoga, and corporate wellness by a certified yoga instructor.",
+
   keywords: [
-    "yoga",
     "online yoga classes",
+    "offline yoga classes Mumbai",
     "personal yoga sessions",
     "therapeutic yoga",
     "weight loss yoga",
-    "stress management",
-    "back pain relief",
+    "stress management yoga",
     "PCOD yoga",
     "diabetes yoga",
     "prenatal yoga",
-    "corporate wellness",
-    "yoga teacher India",
-    "online yoga instructor",
+    "corporate wellness yoga",
+    "certified yoga instructor India",
+    "yoga teacher in Mumbai",
+    "yoga with Sangeeta",
   ],
-  authors: [{ name: "Sangeeta", url: "https://stayfitwithsangeeta.com" }],
+
+  authors: [
+    {
+      name: "Sangeeta",
+      url: "https://stayfitwithsangeeta.com",
+    },
+  ],
+
   creator: "Sangeeta",
   publisher: "StayFit with Sangeeta",
+
   formatDetection: {
     email: false,
     address: false,
     telephone: false,
   },
+
   openGraph: {
     type: "website",
     locale: "en_IN",
-    url: "/",
+    url: process.env.NEXT_PUBLIC_SITE_URL,
     siteName: "StayFit with Sangeeta",
-    title: "StayFit with Sangeeta | Personalized Online Yoga Classes",
+    title: "StayFit with Sangeeta | Online & Offline Yoga Classes in Mumbai",
     description:
-      "Transform your life through personalized yoga with expert guidance from certified instructor Sangeeta.  Online classes available worldwide.",
+      "Personalized yoga classes for women, men, and corporate offices. Online and offline sessions in Mumbai by certified yoga instructor Sangeeta.",
     images: [
       {
-        url: "/logo.svg",
+        url: "/hero-image.jpg", // 1200x630 recommended
         width: 1200,
         height: 630,
-        alt: "StayFit with Sangeeta - Online Yoga Classes",
-        type: "image/jpeg",
+        alt: "StayFit with Sangeeta – Online & Offline Yoga Classes in Mumbai",
       },
     ],
   },
+
   twitter: {
     card: "summary_large_image",
-    title: "StayFit with Sangeeta | Personalized Online Yoga Classes",
+    title: "StayFit with Sangeeta | Online & Offline Yoga Classes in Mumbai",
     description:
-      "Transform your life through personalized yoga.  Online classes & personal sessions available worldwide.",
-    images: ["/logo.svg"],
-    creator: "@sangeetayoga", // Replace with actual Twitter handle
+      "Personalized yoga programs for PCOD, weight loss, stress management & corporate wellness. Online and offline classes available.",
+    images: ["/hero-image.jpg"],
+    creator: "@sangeetayoga", // replace if different
   },
+
   robots: {
     index: true,
     follow: true,
     googleBot: {
       index: true,
       follow: true,
-      "max-video-preview": -1,
       "max-image-preview": "large",
       "max-snippet": -1,
+      "max-video-preview": -1,
     },
   },
+
   icons: {
     icon: [
       { url: "/favicon.ico", sizes: "any" },
-      { url: "/icon.png", type: "image/png", sizes: "32x32" },
-      { url: "/icon-192.png", type: "image/png", sizes: "192x192" },
-      { url: "/icon-512.png", type: "image/png", sizes: "512x512" },
+      { url: "/logo.png", type: "image/png", sizes: "32x32" },
+      { url: "/web-app-manifest-192x192.png", type: "image/png", sizes: "192x192" },
+      { url: "/web-app-manifest-512x512.png", type: "image/png", sizes: "512x512" },
     ],
-    apple: [{ url: "/apple-icon.png", sizes: "180x180", type: "image/png" }],
+    apple: [
+      {
+        url: "/apple-icon.png",
+        sizes: "180x180",
+        type: "image/png",
+      },
+    ],
   },
+
   manifest: "/manifest.json",
+
   verification: {
-    google: "your-google-verification-code", // Add your Google Search Console verification
-    // yandex: "your-yandex-verification-code",
-    // other:  {
-    //   "facebook-domain-verification": "your-fb-verification-code",
-    // },
+    google: "YOUR_GOOGLE_SEARCH_CONSOLE_CODE",
+    // bing: "BING_CODE",
+    // other: { "facebook-domain-verification": "FB_CODE" }
   },
 };
 

@@ -56,7 +56,7 @@ export function Footer() {
             {/* Social Media Icons */}
             <div className="flex gap-4">
               <a
-                href="https://facebook.com"
+                href="https://www.facebook.com/share/1GCNxpcp2K"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-12 h-12 rounded-full bg-white/10 hover:bg-white hover:text-earth-brown flex items-center justify-center transition-all duration-300 hover:scale-110"
@@ -64,7 +64,7 @@ export function Footer() {
               >
                 <Facebook className="h-5 w-5" />
               </a>
-              <a
+              {/* <a
                 href="https://youtube.com"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -81,9 +81,9 @@ export function Footer() {
                 aria-label="Twitter"
               >
                 <Twitter className="h-5 w-5" />
-              </a>
+              </a> */}
               <a
-                href="https://instagram.com"
+                href="https://www.instagram.com/stayfitwithsangeeta"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-12 h-12 rounded-full bg-white/10 hover:bg-white hover:text-earth-brown flex items-center justify-center transition-all duration-300 hover:scale-110"
@@ -102,7 +102,7 @@ export function Footer() {
           {/* Column 1: StayFit with Sangeeta */}
           <div className="space-y-6">
             <h3 className="font-heading text-xl font-semibold text-white">
-              StayFit with Sangeeta
+              stayfit with sangeeta
             </h3>
             <ul className="space-y-3">
               <li>
@@ -188,16 +188,16 @@ export function Footer() {
               </p>
               <div className="space-y-3">
                 <a
-                  href="tel:+919999999999"
+                  href="tel:+917977319411"
                   className="text-white text-lg font-semibold hover:text-lotus-beige transition-colors block"
                 >
-                  +91 9999999999
+                  +917977319411
                 </a>
                 <a
-                  href="mailto:hello@stayfitwithsangeeta.com"
+                  href="mailto:stayfitwithsangeeta25@gmail.com"
                   className="text-lotus-beige hover:text-white transition-colors text-sm block"
                 >
-                  hello@stayfitwithsangeeta.com
+                  stayfitwithsangeeta25@gmail.com
                 </a>
               </div>
             </div>

@@ -28,7 +28,7 @@ export function FloatingButtons() {
   const whatsappMessage = encodeURIComponent(
     "Hi Sangeeta, I'm interested in learning more about your yoga classes!"
   );
-  const whatsappNumber = "919999999999"; // Replace with actual number
+  const whatsappNumber = "917977319411"; // Replace with actual number
   const whatsappLink = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
 
   return (

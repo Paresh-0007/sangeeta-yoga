@@ -23,11 +23,11 @@ export function Footer() {
       scrollTrigger: {
         trigger: "footer",
         start: "top bottom",
-        toggleActions: "play none none reverse",
+        toggleActions: "play none none none",
       },
       opacity: 0,
       y: 50,
-      duration: 0.8,
+      duration: 0.5,
       ease: "power3.out",
     });
   }, []);
@@ -49,7 +49,7 @@ export function Footer() {
                 className=""
               />
               <span className="font-heading text-3xl font-bold text-white group-hover:text-lotus-beige transition-colors">
-                StayFit with Sangeeta
+                stay fit with sangeeta
               </span>
             </Link>
 
@@ -102,7 +102,7 @@ export function Footer() {
           {/* Column 1: StayFit with Sangeeta */}
           <div className="space-y-6">
             <h3 className="font-heading text-xl font-semibold text-white">
-              stayfit with sangeeta
+              stay fit with sangeeta
             </h3>
             <ul className="space-y-3">
               <li>
@@ -162,14 +162,6 @@ export function Footer() {
                   Contact Us
                 </Link>
               </li>
-              <li>
-                <Link
-                  href="/terms"
-                  className="text-white/70 hover:text-white transition-colors text-sm inline-block hover:translate-x-1 duration-300"
-                >
-                  Terms & Conditions
-                </Link>
-              </li>
             </ul>
           </div>
 
@@ -180,9 +172,9 @@ export function Footer() {
             </h3>
             <div className="space-y-4">
               <p className="text-white/70 text-sm leading-relaxed">
-                StayFit Yoga Studio - Online Classes
+                Stay Fit With Sangeeta
                 <br />
-                Available Worldwide via Zoom
+                Available Worldwide via Google Meet
                 <br />
                 Mumbai, India
               </p>
@@ -206,7 +198,7 @@ export function Footer() {
       </div>
 
       {/* Our Location Section (Optional - if you have physical location) */}
-      <div className="border-t border-white/10">
+      {/* <div className="border-t border-white/10">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <h3 className="font-heading text-lg font-semibold text-white">
@@ -221,7 +213,7 @@ export function Footer() {
             </button>
           </div>
         </div>
-      </div>
+      </div> */}
 
       {/* Bottom Section - Copyright */}
       <div className="border-t border-white/10">
@@ -232,12 +224,12 @@ export function Footer() {
               rights reserved.
             </p>
             <p>
-              Powered by{" "}
+              Designed and Developed By{" "}
               <Link
-                href="/"
+                href="https://ervontech.com"
                 className="text-lotus-beige hover:text-white transition-colors font-medium"
               >
-                StayFit with Sangeeta
+                Ervon Technology
               </Link>
             </p>
           </div>

@@ -36,15 +36,15 @@ const PeaceIcon = (props: LucideProps) => <Icon {...props} iconNode={peace} />;
 const features = [
   {
     icon: Video,
-    title: "Online Live Classes",
+    title: "Online Classes",
     description:
-      "Join group sessions from anywhere in the world with real-time guidance and corrections.",
+      "Join group sessions from anywhere in the world with real-time guidance.",
   },
   {
     icon: Users,
     title: "Personal Sessions",
     description:
-      "One-on-one attention with customized yoga plans tailored to your body and goals.",
+      "One-on-one attention with customized yoga plans tailored to your body and goals, online and offline.",
   },
   {
     icon: Heart,
@@ -62,7 +62,7 @@ const features = [
     icon: HouseHeart,
     title: "Offline Classes",
     description:
-      "Experience the benefits of yoga in a serene studio environment with expert guidance.",
+      " Experience the benefits of yoga with expert guidance.",
   },
   {
     icon: Presentation,
@@ -79,7 +79,7 @@ const specializations = [
   "PCOD Management",
   "Diabetes Care",
   "Corporate Wellness",
-  "Prenatal & Postnatal",
+  // "Prenatal & Postnatal",
   "Cancer Rehabilitation",
   "Asthama Relief",
   "Flexibility & Mobility",
@@ -90,21 +90,24 @@ const specializations = [
 const testimonials = [
   {
     quote:
-      "Sangeeta's personalized approach helped me overcome chronic back pain that I had for years. Her understanding of body alignment is exceptional.",
-    author: "Priya M.",
+      "Sangeeta is an excellent and very knowledgeable yoga teacher. One aspect of her teaching that I liked very much was how she explained the reasons and effects of each asana. I joined her class after I was struggling with my breathing post covid. Attending her sessions and practising pranayama helped me improve my breathing. I would recommend Sangeeta for Yoga and Pranayama. I also have recommend her to my friends here in the UK.",
+    author: "Debbani Ghosh",
     role: "Working Professional",
+    image: "/testimonials/debbani-ghosh.jpg",
   },
   {
     quote:
-      "The online classes fit perfectly into my busy schedule. I've lost 8kg and feel more energetic than ever before.",
-    author: "Rahul K.",
-    role: "IT Professional",
+      "I have been learning Yoga for the last two years and my yoga teacher Sangeeta Mukherjee has been an amazing mentor. Yoga has helped me in any way. It has improved the quality of sleep, helped the quality of sleep, helped to maintain better posture, helped in digestion, and my neck issues due to long working hours in office has been resolved because of yoga. I recommend everyone to contact this amazing lady and mentor who will motivate and guide you in the correct direction and help you to lead a healthy life.",
+    author: "Aryaa Bhatta Gangopadhyay",
+    role: "Working Professional",
+    image: "/testimonials/aarya.jpg",
   },
   {
     quote:
-      "As someone who was skeptical about online yoga, Sangeeta changed my perspective completely. Her corrections are so precise! ",
-    author: "Anjali S.",
-    role: "Homemaker",
+      "Sangeeta has been my yoga teacher for 5 months now. There has been major improvement in my sciatica pain and now my arm weakness has reduced. The regular breathing exercises have allowed me to gain calm in my cluttered brain. The dizziness with breathing has become less. The stretches allows me free movement of my body to some extent. Thank you Sangeeta for being a regular in my hectic schedule. I hope to continue this for a long time.",
+    author: "Meghna Saraf",
+    role: "School Teacher",
+    image: "",
   },
 ];
 
@@ -352,17 +355,14 @@ export default function Home() {
 
         {/* Content */}
         <div className="relative z-20 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 sm:py-20 w-full">
-          <div className="max-w-2xl">
-            <h1 className="hero-title text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight text-foreground mb-4 sm:mb-6">
-              YOGA FIRST,
+          <div className="max-w-4xl">
+            <h1 className="hero-title text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight text-foreground mb-4 sm:mb-6">
+              TRANSFORM YOUR LIFE
               <br />
-              FITNESS ALWAYS!
+              THROUGH PERSONALISED YOGA!
             </h1>
             <p className="hero-description text-base sm:text-lg text-muted-foreground mb-6 sm:mb-8 max-w-lg">
-              Welcome to Sangeeta's Yoga Classes. Live Uniquely trained
-              dedication for you and those enthusiasts. Nestled in the vibrant
-              heart of the city, we offer a sanctuary where mind, body, and soul
-              align.
+              Welcome to Sangeeta's Yoga Classes. Experience the healing power of yoga through online group classes and personal sessions.
             </p>
             <div className="hero-buttons flex flex-col sm:flex-row gap-3 sm:gap-4">
               <Button
@@ -425,14 +425,15 @@ export default function Home() {
             </p>
           </div>
 
-          {/* Desktop:  Card Grid */}
+          {/* Desktop:  Card Grid*/}
+          {/* Now I want same height of all cards even if the content length varies */}
           <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 mb-12">
             {features.map((feature, index) => (
               <div key={index} className="feature-card group relative">
                 {/* Card Background with Gradient Border */}
                 <div className="absolute inset-0 bg-gradient-to-br from-earth-brown/5 to-lotus-beige/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
-                <div className="relative p-6 lg:p-8 rounded-2xl bg-white border-2 border-earth-brown/20 group-hover:border-earth-brown transition-all duration-500 group-hover:shadow-2xl group-hover:-translate-y-3">
+                <div className="relative p-6 lg:p-8 rounded-2xl bg-white border-2 border-earth-brown/20 group-hover:border-earth-brown transition-all duration-500 group-hover:shadow-2xl group-hover:-translate-y-3 h-full">
                   {/* Decorative Corner */}
                   <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-earth-brown/10 to-transparent rounded-bl-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
@@ -543,7 +544,7 @@ export default function Home() {
           </div>
 
           {/* Stats Section */}
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
+          {/* <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
             {[
               { number: "500+", label: "Happy Students" },
               { number: "5+", label: "Years Experience" },
@@ -562,7 +563,7 @@ export default function Home() {
                 </div>
               </div>
             ))}
-          </div>
+          </div> */}
         </div>
       </section>
 
@@ -620,7 +621,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Testimonials Section */}
+      {/* Testimonials Section */} 
+      {/* Now need feedbacker image in small circle in bottom right corner */}
       <section className="testimonials-section relative section-padding bg-background py-16 sm:py-20">
         {/* Background Pattern */}
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]" />
@@ -662,6 +664,18 @@ export default function Home() {
                   <p className="text-xs sm:text-sm text-muted-foreground">
                     {testimonial.role}
                   </p>
+                  
+                  {testimonial.image && (
+                  <div className="absolute bottom-0 right-4 w-12 h-12 rounded-full overflow-hidden border-2 border-earth-brown/30">
+                    <Image
+                      src={testimonial.image}
+                      alt={`${testimonial.author} photo`}
+                      width={48}
+                      height={48}
+                      className="object-cover w-full h-full"
+                    />
+                  </div>
+                  )}
                 </div>
               </div>
             ))}
@@ -742,7 +756,7 @@ export default function Home() {
                 <div className="flex items-center gap-2">
                   <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 text-white flex-shrink-0" />
                   <span className="text-xs sm:text-sm font-medium">
-                    500+ Happy Students
+                    All Time Guidance
                   </span>
                 </div>
                 <div className="flex items-center gap-2">

@@ -72,7 +72,7 @@ export function Header() {
                   priority
                 />  
                 <span className="font-heading text-3xl font-bold text-earth-brown-dark group-hover:text-earth-brown transition-colors">
-                  stayfit with sangeeta
+                  stay fit with sangeeta
                 </span>
               </div>
             </Link>

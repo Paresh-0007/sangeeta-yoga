@@ -45,7 +45,7 @@ export const metadata: Metadata = {
   },
 
   description:
-    "StayFit with Sangeeta offers personalized online and offline yoga classes in Mumbai. Programs for women, men, PCOD, weight loss, stress management, prenatal yoga, and corporate wellness by a certified yoga instructor.",
+    "StayFit with Sangeeta offers personalized online and offline yoga classes in Mumbai. Programs for women, men, PCOD, weight loss, stress management, and corporate wellness by a certified yoga instructor.",
 
   keywords: [
     "online yoga classes",
@@ -56,7 +56,7 @@ export const metadata: Metadata = {
     "stress management yoga",
     "PCOD yoga",
     "diabetes yoga",
-    "prenatal yoga",
+    // "prenatal yoga",
     "corporate wellness yoga",
     "certified yoga instructor India",
     "yoga teacher in Mumbai",

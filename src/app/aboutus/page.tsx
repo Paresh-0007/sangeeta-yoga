@@ -23,43 +23,43 @@ if (typeof window !== "undefined") {
 }
 
 const certifications = [
-  "Certified Yoga Teacher - The Yoga Institute, Santacruz",
-  "RYT 200/500 Yoga Alliance Certified",
-  "Specialized Training in Therapeutic Yoga",
-  "Cancer Rehabilitation Yoga Certification",
-  "Prenatal & Postnatal Yoga Specialist",
-  "Corporate Wellness Program Certified",
+  "Government certified teacher- Ministry of AYUSH",
+  "Certified pranayama teacher",
+  "Certified Yoga therapist- The Yoga Institute, Santacruz (East)",
+  "Certified Yoga therapist for cancer Rehabitation and recovery",
+  "RYS-500/RYT-500 yoga alliance certified",
+  "Certified yoga therapist for Lungs cancer",
 ];
 
 const certificateImages = [
   {
     id: 1,
-    title: "Yoga Institute Certificate",
+    title: "Government certified teacher- Ministry of AYUSH",
     image: "/certificates/cert1.jpg",
   },
   {
     id: 2,
-    title: "RYT 200 Certification",
+    title: "Certified pranayama teacher",
     image: "/certificates/cert2.jpg",
   },
   {
     id: 3,
-    title: "Therapeutic Yoga Training",
+    title: "Certified Yoga therapist- The Yoga Institute, Santacruz (East)",
     image: "/certificates/cert3.jpg",
   },
   {
     id: 4,
-    title: "Cancer Rehabilitation Certificate",
+    title: "Certified yoga therapist for cancer Rehabitation and recovery",
     image: "/certificates/cert4.jpg",
   },
   {
     id: 5,
-    title: "Prenatal Yoga Specialist",
+    title: "RYS-500/RYT-500 yoga alliance certified",
     image: "/certificates/cert5.jpg",
   },
   {
     id: 6,
-    title: "Corporate Wellness Certification",
+    title: "Certified yoga therapist for Lungs cancer",
     image: "/certificates/cert6.jpg",
   },
 ];
@@ -386,7 +386,7 @@ export default function About() {
                   alt="Sangeeta practicing yoga"
                   fill
                   className="object-cover"
-                  quality={90}
+                  quality={75}
                   sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 600px"
                 />
               </div>
@@ -444,6 +444,7 @@ export default function About() {
                                 (c) => c.id === cert.id
                               )
                             }
+                            unoptimized={true}
                           />
                         </div>
                       </div>
@@ -504,13 +505,6 @@ export default function About() {
                 >
                   <ChevronRight className="h-4 w-4 sm:h-5 sm:w-5" />
                 </button>
-              </div>
-
-              {/* Auto-play Indicator (Hidden on Mobile) */}
-              <div className="mt-3 sm:mt-4 text-center hidden sm:block">
-                <p className="text-xs sm:text-sm text-muted-foreground">
-                  {isAutoPlaying ? "Auto-playing..." : "Auto-play paused"}
-                </p>
               </div>
             </div>
 
@@ -635,7 +629,7 @@ export default function About() {
                 <div className="flex items-center gap-2">
                   <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 text-white flex-shrink-0" />
                   <span className="text-xs sm:text-sm font-medium">
-                    500+ Happy Students
+                    All Time  Guidance
                   </span>
                 </div>
                 <div className="flex items-center gap-2">

@@ -28,6 +28,7 @@ import {
   Flower2,
   Calendar,
   Globe,
+  Facebook,
 } from "lucide-react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -65,8 +66,8 @@ const contactMethods = [
     description: "Book a free consultation",
     action: "Call Now",
     link: "tel:+917977319411",
-    color:  "bg-blue-500/10 border-blue-500/20 hover:bg-blue-500/15",
-    iconColor:  "text-blue-600",
+    color: "bg-blue-500/10 border-blue-500/20 hover:bg-blue-500/15",
+    iconColor: "text-blue-600",
   },
   {
     icon: Mail,
@@ -86,7 +87,7 @@ const faqs = [
   },
   {
     question: "What equipment do I need?",
-    answer: 
+    answer:
       "Just a yoga mat and comfortable clothes. I'll guide you on everything else.",
   },
   {
@@ -98,13 +99,13 @@ const faqs = [
     answer: "Yes!  Online classes are accessible from anywhere in the world.",
   },
   {
-    question:  "What are the class timings?",
-    answer: 
+    question: "What are the class timings?",
+    answer:
       "Flexible morning and evening slots available to suit your schedule.",
   },
   {
     question: "How do I book a session?",
-    answer: 
+    answer:
       "Simply contact us via WhatsApp, phone, or email to schedule your class.",
   },
 ];
@@ -118,10 +119,15 @@ export default function Contact() {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    phone:  "",
+    phone: "",
     interest: "",
     message: "",
   });
+
+  const isFormValid =
+    formData.name.trim() !== "" &&
+    formData.email.trim() !== "" &&
+    formData.message.trim() !== "";
 
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -141,7 +147,7 @@ export default function Contact() {
         .from(
           ".hero-badge",
           {
-            opacity:  0,
+            opacity: 0,
             scale: 0.8,
             duration: 0.6,
           },
@@ -150,7 +156,7 @@ export default function Contact() {
         .from(
           ".hero-title",
           {
-            opacity:  0,
+            opacity: 0,
             y: 30,
             duration: 1,
           },
@@ -159,7 +165,7 @@ export default function Contact() {
         .from(
           ".hero-description",
           {
-            opacity:  0,
+            opacity: 0,
             y: 20,
             duration: 0.8,
           },
@@ -172,7 +178,7 @@ export default function Contact() {
         { opacity: 0, y: 40 },
         {
           opacity: 1,
-          y:  0,
+          y: 0,
           duration: 0.8,
           stagger: 0.15,
           ease: "power3.out",
@@ -190,7 +196,7 @@ export default function Contact() {
         { opacity: 0, x: -50 },
         {
           opacity: 1,
-          x:  0,
+          x: 0,
           duration: 1,
           ease: "power3.out",
           scrollTrigger: {
@@ -206,11 +212,11 @@ export default function Contact() {
         { opacity: 0, y: 20 },
         {
           opacity: 1,
-          y:  0,
+          y: 0,
           duration: 0.6,
           stagger: 0.1,
           ease: "power3.out",
-          scrollTrigger:  {
+          scrollTrigger: {
             trigger: ".contact-form",
             start: "top 70%",
             toggleActions: "play none none none",
@@ -225,7 +231,7 @@ export default function Contact() {
         {
           opacity: 1,
           x: 0,
-          duration:  1,
+          duration: 1,
           ease: "power3.out",
           scrollTrigger: {
             trigger: ".form-section",
@@ -237,14 +243,14 @@ export default function Contact() {
 
       gsap.fromTo(
         ".info-card",
-        { opacity:  0, scale: 0.95 },
+        { opacity: 0, scale: 0.95 },
         {
           opacity: 1,
-          scale:  1,
+          scale: 1,
           duration: 0.6,
           stagger: 0.1,
           ease: "back.out(1.7)",
-          scrollTrigger:  {
+          scrollTrigger: {
             trigger: ".contact-info",
             start: "top 70%",
             toggleActions: "play none none none",
@@ -258,7 +264,7 @@ export default function Contact() {
         { opacity: 0, x: -20 },
         {
           opacity: 1,
-          x:  0,
+          x: 0,
           duration: 0.6,
           stagger: 0.1,
           ease: "power3.out",
@@ -276,20 +282,20 @@ export default function Contact() {
     };
   }, []);
 
-  const handleSubmit = async (e:  React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
 
     // Simulate form submission
-    await new Promise((resolve) => setTimeout(resolve, 1500));
+    await new Promise((resolve) => setTimeout(resolve, 3000));
 
     toast({
       title: "Message Sent Successfully!",
-      description: 
+      description:
         "Thank you for reaching out. Sangeeta will get back to you within 24 hours.",
     });
 
-    setFormData({ name: "", email: "", phone:  "", interest: "", message: "" });
+    setFormData({ name: "", email: "", phone: "", interest: "", message: "" });
     setIsSubmitting(false);
   };
 
@@ -355,7 +361,7 @@ export default function Contact() {
 
             <p className="hero-description text-sm sm:text-base md:text-lg lg:text-2xl text-muted-foreground max-w-3xl mx-auto px-4 drop-shadow-sm leading-relaxed">
               Have questions or ready to start your yoga journey? We're here to
-              help.  Reach out and let's connect. 
+              help. Reach out and let's connect.
             </p>
           </div>
         </div>
@@ -369,7 +375,7 @@ export default function Contact() {
               Choose Your Preferred Way to Connect
             </h2>
             <p className="text-sm sm:text-base text-muted-foreground">
-              Quick responses guaranteed! 
+              Quick responses guaranteed!
             </p>
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
@@ -381,14 +387,16 @@ export default function Contact() {
                 rel={
                   method.link.startsWith("http")
                     ? "noopener noreferrer"
-                    :  undefined
+                    : undefined
                 }
                 className={`contact-method-card group relative p-6 sm:p-8 rounded-2xl border-2 ${method.color} transition-all duration-300 hover: scale-105 hover:shadow-xl`}
               >
                 <div
                   className={`w-12 h-12 sm:w-16 sm:h-16 rounded-2xl bg-white/50 flex items-center justify-center mb-4 sm:mb-6 group-hover:scale-110 transition-transform`}
                 >
-                  <method.icon className={`h-6 w-6 sm:h-8 sm:w-8 ${method.iconColor}`} />
+                  <method.icon
+                    className={`h-6 w-6 sm:h-8 sm:w-8 ${method.iconColor}`}
+                  />
                 </div>
                 <h3 className="text-lg sm:text-xl font-bold text-foreground mb-2">
                   {method.title}
@@ -422,7 +430,10 @@ export default function Contact() {
                   </p>
                 </div>
 
-                <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
+                <form
+                  onSubmit={handleSubmit}
+                  className="space-y-4 sm:space-y-6"
+                >
                   <div className="grid sm:grid-cols-2 gap-4 sm:gap-6">
                     <div className="form-field space-y-2">
                       <Label
@@ -523,12 +534,29 @@ export default function Contact() {
                       required
                     />
                   </div>
-
+                  {/* Keep button disabled until form is valid */}
                   <Button
                     type="submit"
                     size="lg"
-                    className="w-full group bg-earth-brown hover:bg-earth-brown-dark text-white shadow-lg text-sm sm:text-base"
-                    disabled={isSubmitting}
+                    className={`w-full group text-white shadow-lg text-sm sm:text-base ${isFormValid ? "bg-earth-brown hover:bg-earth-brown-dark" : "bg-earth-brown/50 cursor-not-allowed"}`}
+                    disabled={isSubmitting || !isFormValid}
+                    onClick={() => {
+                      if (!isFormValid) return;
+                      window.open(
+                        `https://wa.me/917977319411?text=Hi%20Sangeeta,%20I%20would%20like%20to%20inquire%20about%20your%20yoga%20classes.%20Here%20is%20my%20message:%0AName:%20${encodeURIComponent(
+                          formData.name
+                        )}%0AEmail:%20${encodeURIComponent(
+                          formData.email
+                        )}%0APhone:%20${encodeURIComponent(
+                          formData.phone
+                        )}%0AInterest:%20${encodeURIComponent(
+                          formData.interest
+                        )}%0AMessage:%20${encodeURIComponent(
+                          formData.message
+                        )}`,
+                        "_blank"
+                      );
+                    }}
                   >
                     {isSubmitting ? (
                       <span className="flex items-center gap-2">
@@ -633,7 +661,7 @@ export default function Contact() {
                 </h3>
                 <div className="flex gap-2 sm:gap-3">
                   <a
-                    href="https://instagram.com"
+                    href="https://www.instagram.com/stayfitwithsangeeta"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex-1 flex items-center justify-center gap-2 px-3 sm:px-4 py-2.5 sm:py-3 rounded-xl bg-white border border-earth-brown/20 hover:border-earth-brown hover:shadow-md transition-all"
@@ -644,14 +672,14 @@ export default function Contact() {
                     </span>
                   </a>
                   <a
-                    href="https://youtube.com"
+                    href="https://facebook.com/share/1GCNxpcp2K"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex-1 flex items-center justify-center gap-2 px-3 sm:px-4 py-2.5 sm:py-3 rounded-xl bg-white border border-earth-brown/20 hover:border-earth-brown hover: shadow-md transition-all"
                   >
-                    <Youtube className="h-4 w-4 sm:h-5 sm:w-5 text-earth-brown" />
+                    <Facebook className="h-4 w-4 sm:h-5 sm:w-5 text-earth-brown" />
                     <span className="font-medium text-foreground text-xs sm:text-sm">
-                      YouTube
+                      Facebook
                     </span>
                   </a>
                 </div>
@@ -668,7 +696,7 @@ export default function Contact() {
                       Book a Free Consultation
                     </h3>
                     <p className="text-white/90 text-xs sm:text-sm">
-                      Not sure where to start?  Let's have a 15-minute call to
+                      Not sure where to start? Let's have a 15-minute call to
                       discuss your goals and find the perfect program for you.
                     </p>
                   </div>

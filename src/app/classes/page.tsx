@@ -35,10 +35,10 @@ const mainServices = [
     description:
       "Join live group sessions with students from around the world. Perfect for those who thrive in community energy.",
     features: [
-      "Live interactive sessions via Zoom",
+      "Live interactive sessions",
       "Small batch sizes for personal attention",
-      "Multiple time slots available",
-      "Replays available for 24 hours",
+      "All Time guidance and support",
+      "Learn from the comfort of home",
     ],
     highlight: "Most Popular",
     color: "from-earth-brown to-earth-brown-dark",
@@ -47,7 +47,7 @@ const mainServices = [
     icon: User,
     title: "Personal Sessions",
     description:
-      "One-on-one attention with customized yoga plans designed specifically for your body, goals, and schedule.",
+      "One-on-one attention with customized yoga plans tailored to your body and goals, online and offline both.",
     features: [
       "Completely personalized program",
       "Flexible scheduling",
@@ -59,22 +59,22 @@ const mainServices = [
   },
 ];
 
-const additionalServices = [
-  {
-    icon: Play,
-    title: "Pre-recorded Courses",
-    description:
-      "Learn at your own pace with professionally recorded yoga courses covering various styles and levels.",
-    image: "/services/prerecorded.jpg",
-  },
-  {
-    icon: Calendar,
-    title: "Workshops & Retreats",
-    description:
-      "Deep-dive sessions on specific topics and immersive yoga experiences for complete transformation.",
-    image: "/services/workshops.jpg",
-  },
-];
+// const additionalServices = [
+//   {
+//     icon: Play,
+//     title: "Pre-recorded Courses",
+//     description:
+//       "Learn at your own pace with professionally recorded yoga courses covering various styles and levels.",
+//     image: "/services/prerecorded.jpg",
+//   },
+//   {
+//     icon: Calendar,
+//     title: "Workshops & Retreats",
+//     description:
+//       "Deep-dive sessions on specific topics and immersive yoga experiences for complete transformation.",
+//     image: "/services/workshops.jpg",
+//   },
+// ];
 
 const yogaStyles = [
   {
@@ -90,27 +90,21 @@ const yogaStyles = [
     level: "All Levels",
   },
   {
-    name: "Ashtanga",
-    description: "Dynamic, physically demanding style for building strength",
-    icon: "💪",
-    level: "Intermediate",
-  },
-  {
-    name: "Yin Yoga",
-    description: "Slow-paced practice targeting deep connective tissues",
-    icon: "🌙",
-    level: "All Levels",
-  },
-  {
-    name: "Prenatal/Postnatal",
-    description: "Safe practices for expecting and new mothers",
-    icon: "🤰",
-    level: "Specialized",
-  },
-  {
     name: "Therapeutic Yoga",
     description: "Healing-focused practice for specific health conditions",
     icon: "❤️",
+    level: "All Levels",
+  },
+  {
+    name: "Pranayama",
+    description: "Breath control techniques for mind-body balance",
+    icon: "🌬️",
+    level: "All Levels",
+  },
+  {
+    name: "Meditation",
+    description: "Mindfulness and relaxation techniques for mental clarity",
+    icon: "🧘‍♂️",
     level: "All Levels",
   },
 ];
@@ -158,11 +152,11 @@ const specializations = [
     icon: "😮‍💨",
     color: "bg-indigo-100 text-indigo-700",
   },
-  {
-    name: "Prenatal & Postnatal",
-    icon: "🤰",
-    color: "bg-pink-100 text-pink-700",
-  },
+  // {
+  //   name: "Prenatal & Postnatal",
+  //   icon: "🤰",
+  //   color: "bg-pink-100 text-pink-700",
+  // },
   {
     name: "Strength Building",
     icon: "🏋️",
@@ -541,7 +535,7 @@ export default function Classes() {
           </div>
 
           {/* Additional Services */}
-          <div className="additional-services grid md:grid-cols-2 gap-6">
+          {/* <div className="additional-services grid md:grid-cols-2 gap-6">
             {additionalServices.map((service, index) => (
               <div
                 key={index}
@@ -571,7 +565,7 @@ export default function Classes() {
                 </div>
               </div>
             ))}
-          </div>
+          </div> */}
         </div>
       </section>
 
@@ -659,7 +653,7 @@ export default function Classes() {
       </section>
 
       {/* Testimonials */}
-      <section className="testimonials-section section-padding bg-card py-20">
+      {/* <section className="testimonials-section section-padding bg-card py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold text-foreground mb-4">
@@ -695,7 +689,7 @@ export default function Classes() {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* CTA Schedule Section */}
       <section className="schedule-section relative section-padding py-32 overflow-hidden">

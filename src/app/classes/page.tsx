@@ -637,7 +637,7 @@ export default function Classes() {
             <div className="spec-image relative">
               <div className="aspect-square rounded-2xl overflow-hidden shadow-2xl border-4 border-earth-brown/10">
                 <Image
-                  src="/specializations-image.jpg"
+                  src="/classes-specialization.jpg"
                   alt="Yoga Specializations"
                   fill
                   className="object-cover"

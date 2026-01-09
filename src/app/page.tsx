@@ -349,7 +349,6 @@ export default function Home() {
             className="object-cover object-right md:object-center opacity-90 hidden sm:block"
             priority
             sizes="100vw"
-            quality={75}
           />
         </div>
 
@@ -357,9 +356,9 @@ export default function Home() {
         <div className="relative z-20 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 sm:py-20 w-full">
           <div className="max-w-4xl">
             <h1 className="hero-title text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight text-foreground mb-4 sm:mb-6">
-              TRANSFORM YOUR LIFE
+              Transform Your Life,
               <br />
-              THROUGH PERSONALISED YOGA!
+              Through Personalized Yoga!
             </h1>
             <p className="hero-description text-base sm:text-lg text-muted-foreground mb-6 sm:mb-8 max-w-lg">
               Welcome to Sangeeta's Yoga Classes. Experience the healing power of yoga through online group classes and personal sessions.
@@ -622,7 +621,7 @@ export default function Home() {
       </section>
 
       {/* Testimonials Section */} 
-      {/* Now need feedbacker image in small circle in bottom right corner */}
+      {/* convert this in caurosel so multiple testimonials can be shown */}
       <section className="testimonials-section relative section-padding bg-background py-16 sm:py-20">
         {/* Background Pattern */}
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]" />

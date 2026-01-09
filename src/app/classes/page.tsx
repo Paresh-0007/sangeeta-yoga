@@ -161,7 +161,7 @@ const specializations = [
     name: "Strength Building",
     icon: "🏋️",
     color: "bg-red-100 text-red-700",
-  }
+  },
 ];
 
 const testimonials = [
@@ -453,7 +453,6 @@ export default function Classes() {
         {/* Content - Centered */}
         <div className="relative z-20 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 sm:py-16 w-full">
           <div className="text-center max-w-4xl mx-auto">
-
             <h1 className="hero-title text-4xl sm:text-5xl lg:text-7xl font-bold text-foreground mb-4 sm:mb-6 drop-shadow-md">
               Yoga{" "}
               <span className="text-earth-brown drop-shadow-sm">Classes</span> &

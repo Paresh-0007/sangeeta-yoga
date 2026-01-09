@@ -61,8 +61,7 @@ const features = [
   {
     icon: HouseHeart,
     title: "Offline Classes",
-    description:
-      " Experience the benefits of yoga with expert guidance.",
+    description: " Experience the benefits of yoga with expert guidance.",
   },
   {
     icon: Presentation,
@@ -107,7 +106,25 @@ const testimonials = [
       "Sangeeta has been my yoga teacher for 5 months now. There has been major improvement in my sciatica pain and now my arm weakness has reduced. The regular breathing exercises have allowed me to gain calm in my cluttered brain. The dizziness with breathing has become less. The stretches allows me free movement of my body to some extent. Thank you Sangeeta for being a regular in my hectic schedule. I hope to continue this for a long time.",
     author: "Meghna Saraf",
     role: "School Teacher",
-    image: "",
+    image: "/testimonials/abc.png",
+  },
+  {
+    quote: `It's been couple of years I have been practicing yoga with Sangeeta.
+      * There has been improvement in my balancing.
+      * Body has become more flexible.
+      * My sinus has come in control to a large extent.
+      Previously due to a fall I had reduced right leg ankle mobility. With yoga now my ankle movements are back to normal. My thyroid medicine dosage has also reduced.
+      Thank you Sangeeta for teaching us yoga in a right way.`,
+    author: "Dipali Deshmukh",
+    role: "Finance professional",
+    image: "/testimonials/dipali.jpg",
+  },
+  {
+    quote:
+      "I have been practicing pranayama with Sangeeta since six months. She is a very good teacher. She is patient and explains the benefits of each asana and technique of doing it properly in a correct way in corporating yoga in daily life helps everyone. Sangeeta has initiated me to practice some asanas daily in order to stay healthy. I look forward to her classes as it helps me not just staying fit but to think positively.",
+    author: "Kajori Sanyal",
+    role: "Home Maker",
+    image: "/testimonials/kajori.jpg",
   },
 ];
 
@@ -115,6 +132,10 @@ export default function Home() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [activeFeature, setActiveFeature] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+  const [activeTestimonial, setActiveTestimonial] = useState(0);
+  const [isTestimonialsAutoPlaying, setIsTestimonialsAutoPlaying] =
+    useState(true);
+  const [visibleTestimonials, setVisibleTestimonials] = useState(1);
 
   // Carousel Auto-play
   useEffect(() => {
@@ -287,6 +308,38 @@ export default function Home() {
     };
   }, []);
 
+  // Testimonials Auto-play with visible count
+  useEffect(() => {
+    if (!isTestimonialsAutoPlaying) return;
+
+    const maxIndex = Math.max(0, testimonials.length - visibleTestimonials);
+
+    const interval = setInterval(() => {
+      setActiveTestimonial((prev) => {
+        if (prev >= maxIndex) return 0;
+        return prev + 1;
+      });
+    }, 6000);
+
+    return () => clearInterval(interval);
+  }, [isTestimonialsAutoPlaying, visibleTestimonials]);
+
+  const handleTestimonialsPrevious = () => {
+    setIsTestimonialsAutoPlaying(false);
+    setActiveTestimonial((prev) => Math.max(0, prev - 1));
+  };
+
+  const handleTestimonialsNext = () => {
+    setIsTestimonialsAutoPlaying(false);
+    const maxIndex = Math.max(0, testimonials.length - visibleTestimonials);
+    setActiveTestimonial((prev) => Math.min(maxIndex, prev + 1));
+  };
+
+  const handleTestimonialsDotClick = (index: number) => {
+    setIsTestimonialsAutoPlaying(false);
+    setActiveTestimonial(index);
+  };
+
   const handlePrevious = () => {
     setIsAutoPlaying(false);
     setActiveFeature((prev) => (prev - 1 + features.length) % features.length);
@@ -301,6 +354,25 @@ export default function Home() {
     setIsAutoPlaying(false);
     setActiveFeature(index);
   };
+
+  // Track visible testimonials based on viewport
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    const updateVisible = () => {
+      if (window.innerWidth >= 1024) {
+        setVisibleTestimonials(3); // Desktop:  3 cards
+      } else if (window.innerWidth >= 640) {
+        setVisibleTestimonials(2); // Tablet: 2 cards
+      } else {
+        setVisibleTestimonials(1); // Mobile: 1 card
+      }
+    };
+
+    updateVisible();
+    window.addEventListener("resize", updateVisible);
+    return () => window.removeEventListener("resize", updateVisible);
+  }, []);
 
   return (
     <div ref={containerRef} className="relative overflow-hidden">
@@ -361,7 +433,8 @@ export default function Home() {
               Through Personalized Yoga!
             </h1>
             <p className="hero-description text-base sm:text-lg text-muted-foreground mb-6 sm:mb-8 max-w-lg">
-              Welcome to Sangeeta's Yoga Classes. Experience the healing power of yoga through online group classes and personal sessions.
+              Welcome to Sangeeta's Yoga Classes. Experience the healing power
+              of yoga through online group classes and personal sessions.
             </p>
             <div className="hero-buttons flex flex-col sm:flex-row gap-3 sm:gap-4">
               <Button
@@ -620,15 +693,15 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Testimonials Section */} 
-      {/* convert this in caurosel so multiple testimonials can be shown */}
+      {/* Testimonials Section */}
+      {/* Testimonials Section - Responsive Multi-Card Carousel */}
       <section className="testimonials-section relative section-padding bg-background py-16 sm:py-20">
         {/* Background Pattern */}
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]" />
 
         <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12 sm:mb-16">
-            <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-3 sm:mb-4">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-3 sm:mb-4">
               What My Students Say
             </h2>
             <p className="text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto px-4">
@@ -636,48 +709,128 @@ export default function Home() {
               journey with me.
             </p>
           </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-            {testimonials.map((testimonial, index) => (
-              <div
-                key={index}
-                className="testimonial-card p-6 sm:p-8 rounded-2xl bg-card/80 backdrop-blur-sm border border-earth-brown/20 hover:border-earth-brown hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 relative overflow-hidden"
-              >
-                {/* Decorative corner */}
-                <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-earth-brown/10 to-transparent rounded-bl-full" />
 
-                <div className="flex gap-1 mb-4 text-primary relative z-10">
-                  {[1, 2, 3, 4, 5].map((i) => (
-                    <Star
-                      key={i}
-                      className="h-4 w-4 sm:h-5 sm:w-5 fill-current"
-                    />
-                  ))}
-                </div>
-                <p className="text-sm sm:text-base text-foreground mb-4 sm:mb-6 italic relative z-10">
-                  &ldquo;{testimonial.quote}&rdquo;
-                </p>
-                <div className="relative z-10">
-                  <p className="font-semibold text-foreground text-sm sm:text-base">
-                    {testimonial.author}
-                  </p>
-                  <p className="text-xs sm:text-sm text-muted-foreground">
-                    {testimonial.role}
-                  </p>
-                  
-                  {testimonial.image && (
-                  <div className="absolute bottom-0 right-4 w-12 h-12 rounded-full overflow-hidden border-2 border-earth-brown/30">
-                    <Image
-                      src={testimonial.image}
-                      alt={`${testimonial.author} photo`}
-                      width={48}
-                      height={48}
-                      className="object-cover w-full h-full"
-                    />
+          {/* Multi-Card Carousel */}
+          <div className="relative">
+            <div className="overflow-hidden rounded-2xl sm:rounded-3xl">
+              <div
+                className="flex transition-transform duration-700 ease-out"
+                style={{
+                  transform: `translateX(-${
+                    activeTestimonial * (100 / visibleTestimonials)
+                  }%)`,
+                }}
+              >
+                {testimonials.map((testimonial, index) => (
+                  <div
+                    key={index}
+                    className="flex-shrink-0 px-2 sm:px-3 lg:px-4"
+                    style={{
+                      width: `${100 / visibleTestimonials}%`,
+                    }}
+                  >
+                    <div className="h-full p-4 sm:p-6 lg:p-8 rounded-2xl bg-card/80 backdrop-blur-sm border border-earth-brown/20 hover:border-earth-brown hover:shadow-2xl transition-all duration-300 relative overflow-hidden">
+                      {/* Decorative corner */}
+                      <div className="absolute top-0 right-0 w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-earth-brown/10 to-transparent rounded-bl-full" />
+
+                      {/* Stars */}
+                      <div className="flex gap-0. 5 sm:gap-1 mb-3 sm:mb-4 text-primary relative z-10">
+                        {[1, 2, 3, 4, 5].map((i) => (
+                          <Star
+                            key={i}
+                            className="h-3 w-3 sm:h-4 sm:w-4 lg:h-5 lg:w-5 fill-current"
+                          />
+                        ))}
+                      </div>
+
+                      {/* Quote */}
+                      <p className="text-xs sm:text-sm lg:text-base text-foreground mb-4 sm:mb-6 italic relative z-10 leading-relaxed line-clamp-6">
+                        &ldquo;{testimonial.quote}&rdquo;
+                      </p>
+
+                      {/* Author Info */}
+                      <div className="relative z-10 flex items-end justify-between gap-2">
+                        <div className="min-w-0">
+                          <p className="font-semibold text-foreground text-xs sm:text-sm lg:text-base truncate">
+                            {testimonial.author}
+                          </p>
+                          <p className="text-[10px] sm:text-xs lg:text-sm text-muted-foreground truncate">
+                            {testimonial.role}
+                          </p>
+                        </div>
+
+                        {testimonial.image && (
+                          <div className="w-10 h-10 sm:w-12 sm:h-12 lg:w-14 lg:h-14 rounded-full overflow-hidden border-2 border-earth-brown/30 flex-shrink-0 shadow-md">
+                            <Image
+                              src={testimonial.image}
+                              alt={`${testimonial.author} photo`}
+                              width={56}
+                              height={56}
+                              className="object-cover w-full h-full"
+                            />
+                          </div>
+                        )}
+                      </div>
+                    </div>
                   </div>
-                  )}
-                </div>
+                ))}
               </div>
-            ))}
+            </div>
+
+            {/* Carousel Controls */}
+            <div className="flex items-center justify-center gap-3 sm:gap-4 mt-6 sm:mt-8">
+              {/* Previous Button */}
+              <button
+                onClick={handleTestimonialsPrevious}
+                disabled={activeTestimonial === 0}
+                className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white border-2 border-earth-brown/20 flex items-center justify-center hover:bg-earth-brown hover:border-earth-brown hover:text-white transition-all duration-300 shadow-lg active: scale-95 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-white disabled:hover:text-foreground"
+                aria-label="Previous testimonials"
+              >
+                <ChevronLeft className="h-5 w-5" />
+              </button>
+
+              {/* Dots Indicator */}
+              <div className="flex gap-2">
+                {Array.from({
+                  length: Math.max(
+                    1,
+                    testimonials.length - visibleTestimonials + 1
+                  ),
+                }).map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => handleTestimonialsDotClick(index)}
+                    className={`transition-all duration-300 rounded-full ${
+                      index === activeTestimonial
+                        ? "w-6 sm:w-8 h-2.5 sm:h-3 bg-earth-brown"
+                        : "w-2.5 sm:w-3 h-2.5 sm:h-3 bg-earth-brown/30 hover:bg-earth-brown/50"
+                    }`}
+                    aria-label={`Go to testimonials page ${index + 1}`}
+                  />
+                ))}
+              </div>
+
+              {/* Next Button */}
+              <button
+                onClick={handleTestimonialsNext}
+                disabled={
+                  activeTestimonial >= testimonials.length - visibleTestimonials
+                }
+                className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white border-2 border-earth-brown/20 flex items-center justify-center hover:bg-earth-brown hover:border-earth-brown hover:text-white transition-all duration-300 shadow-lg active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-white disabled: hover:text-foreground"
+                aria-label="Next testimonials"
+              >
+                <ChevronRight className="h-5 w-5" />
+              </button>
+            </div>
+
+            {/* Auto-play Indicator */}
+            <div className="mt-4 text-center">
+              <p className="text-xs sm:text-sm text-muted-foreground">
+                {isTestimonialsAutoPlaying
+                  ? "Auto-playing..."
+                  : "Auto-play paused"}
+              </p>
+            </div>
           </div>
         </div>
       </section>

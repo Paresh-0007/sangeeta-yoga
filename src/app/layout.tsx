@@ -160,6 +160,7 @@ export default function RootLayout({
           name="apple-mobile-web-app-title"
           content="StayFit with Sangeeta"
         />
+        <meta name="theme-color" content="#7A5C4A" />
       </head>
       <body className="min-h-screen flex flex-col antialiased">
         <TooltipProvider>

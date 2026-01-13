@@ -603,7 +603,7 @@ export default function Home() {
                   src="/specializations-image.jpg"
                   alt="Yoga Specializations"
                   fill
-                  className="object-cover"
+                  className="object-cover rounded-2xl"
                 />
               </div>
             </div>
@@ -636,7 +636,7 @@ export default function Home() {
             {galleryImages.map((image) => (
               <div
                 key={image.id}
-                className={`gallery-item group relative rounded-xl sm:rounded-2xl overflow-hidden border border-earth-brown/10 ${getGridClasses(
+                className={`gallery-item group relative rounded-xl sm:rounded-2xl overflow-hidden border-2 border-earth-brown ${getGridClasses(
                   image.size
                 )}`}
               >
@@ -647,11 +647,6 @@ export default function Home() {
                   className="object-cover transition-transform duration-700 group-hover:scale-110"
                   sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 25vw"
                 />
-                {image.badge && (
-                  <div className="absolute top-2 left-2 sm:top-4 sm:left-4 z-20 flex items-center gap-1.5 px-2 py-0.5 sm:px-3 sm:py-1 bg-white/90 backdrop-blur rounded-full text-earth-brown text-[10px] sm:text-xs font-bold shadow-sm">
-                    <Award className="h-3 w-3" /> {image.badge}
-                  </div>
-                )}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 flex flex-col justify-end p-3 sm:p-6">
                   <h3 className="text-white font-bold text-xs sm:text-sm lg:text-lg line-clamp-2">
                     {image.title}

@@ -78,7 +78,7 @@ const specializations = [
   "PCOD Management",
   "Diabetes Care",
   "Corporate Wellness",
-  // "Prenatal & Postnatal",
+  "Prenatal & Postnatal",
   "Cancer Rehabilitation",
   "Asthama Relief",
   "Flexibility & Mobility",
@@ -106,7 +106,7 @@ const testimonials = [
       "Sangeeta has been my yoga teacher for 5 months now. There has been major improvement in my sciatica pain and now my arm weakness has reduced. The regular breathing exercises have allowed me to gain calm in my cluttered brain. The dizziness with breathing has become less. The stretches allows me free movement of my body to some extent. Thank you Sangeeta for being a regular in my hectic schedule. I hope to continue this for a long time.",
     author: "Meghna Saraf",
     role: "School Teacher",
-    image: "/testimonials/abc.png",
+    image: "/testimonials/meghna-saraf.jpg",
   },
   {
     quote: `It's been couple of years I have been practicing yoga with Sangeeta.
@@ -378,30 +378,11 @@ export default function Home() {
     <div ref={containerRef} className="relative overflow-hidden">
       {/* Hero Section */}
       <section className="hero-section relative min-h-[85vh] sm:min-h-[90vh] flex items-center overflow-hidden">
-        {/* Animated Background Pattern */}
-        <div className="absolute inset-0 bg-gradient-to-br from-lotus-beige-light via-background to-lotus-beige">
-          {/* Decorative Circles */}
-          <div className="absolute top-10 right-10 w-48 h-48 sm:w-72 sm:h-72 bg-earth-brown/5 rounded-full blur-3xl" />
-          <div className="absolute bottom-20 left-10 w-64 h-64 sm:w-96 sm:h-96 bg-lotus-beige/30 rounded-full blur-3xl" />
-          <div className="absolute top-1/2 right-1/4 w-48 h-48 sm:w-64 sm:h-64 bg-earth-brown-light/10 rounded-full blur-2xl" />
-
-          {/* Floating Leaves - Hidden on small mobile */}
-          <div className="floating-leaf absolute top-20 left-[10%] opacity-10 hidden sm:block">
-            <Leaf className="w-8 h-8 sm:w-12 sm:h-12 text-earth-brown" />
-          </div>
-          <div className="floating-leaf absolute top-40 right-[15%] opacity-10 hidden sm:block">
-            <Flower2 className="w-12 h-12 sm:w-16 sm:h-16 text-earth-brown-light" />
-          </div>
-          <div className="floating-leaf absolute bottom-32 left-[20%] opacity-10 hidden sm:block">
-            <Sparkles className="w-8 h-8 sm:w-10 sm:h-10 text-earth-brown" />
-          </div>
-        </div>
-
         {/* Background Image Overlay - RESPONSIVE IMAGES */}
         <div className="hero-bg absolute inset-0">
           {/* Gradient Overlay for Text Readability */}
-          <div className="absolute z-10" />
-
+          {/* Dark Overlay */}
+          <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent z-10" />
           {/* Mobile Image (Portrait - Height > Width) */}
           <Image
             src="/hero-mobile.jpg"
@@ -527,13 +508,18 @@ export default function Home() {
                   </p>
 
                   {/* Learn More Link */}
-                  <Link
-                    href="/contact"
-                    className="text-earth-brown font-medium text-sm flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:gap-3"
-                  >
-                    Contact Us
-                    <ArrowRight className="h-4 w-4" />
-                  </Link>
+                  {/* redirect to /classes if feature.title are online classes and personal sessions else to /contact */}
+                  {feature.title === "Online Classes" || feature.title === "Personal Sessions" ? (
+                    <Link
+                      href="/classes"
+                      className="text-earth-brown font-medium text-sm flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:gap-3"
+                    >Classes <ArrowRight className="h-4 w-4" /></Link>  
+                  ) : (
+                    <Link
+                      href="/contact"
+                      className="text-earth-brown font-medium text-sm flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:gap-3"
+                    >Contact Us <ArrowRight className="h-4 w-4" /></Link>
+                  )}
 
                   {/* Number Badge */}
                   <div className="absolute bottom-4 right-4 w-10 h-10 rounded-full bg-earth-brown/5 flex items-center justify-center text-earth-brown/30 font-bold text-lg group-hover:bg-earth-brown group-hover:text-white transition-all duration-500">

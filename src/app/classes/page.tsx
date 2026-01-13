@@ -107,6 +107,12 @@ const yogaStyles = [
     icon: "🧘‍♂️",
     level: "All Levels",
   },
+  {
+    name: "Restorative Yoga",
+    description: "Gentle poses for deep relaxation and stress relief",
+    icon: "🌿",
+    level: "All Levels",
+  }
 ];
 
 const specializations = [
@@ -152,16 +158,17 @@ const specializations = [
     icon: "😮‍💨",
     color: "bg-indigo-100 text-indigo-700",
   },
-  // {
-  //   name: "Prenatal & Postnatal",
-  //   icon: "🤰",
-  //   color: "bg-pink-100 text-pink-700",
-  // },
+  {
+    name: "Prenatal & Postnatal",
+    icon: "🤰",
+    color: "bg-pink-100 text-pink-700",
+  },
   {
     name: "Strength Building",
     icon: "🏋️",
     color: "bg-red-100 text-red-700",
   },
+
 ];
 
 const testimonials = [

@@ -12,11 +12,13 @@ import {
   CheckCircle,
   Sparkles,
   PhoneCall as Call,
-  Leaf,
-  Flower2,
   Icon,
   HouseHeart,
   Presentation,
+  ChevronLeft,
+  ChevronRight,
+  Award,
+  Camera,
 } from "lucide-react";
 import type { LucideProps } from "lucide-react";
 import { peace } from "@lucide/lab";
@@ -24,7 +26,6 @@ import { peace } from "@lucide/lab";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
-import { ChevronLeft, ChevronRight } from "lucide-react";
 
 // Register GSAP plugins
 if (typeof window !== "undefined") {
@@ -86,6 +87,54 @@ const specializations = [
   "Mindfulness & Meditation",
 ];
 
+// NEW: Gallery Data (Only JPG Images)
+const galleryImages = [
+  {
+    id: 1,
+    src: "/gallery/yoga-1.jpg",
+    title: "WEE- Certificate of Appreciation",
+    size: "large",
+  },
+  {
+    id: 2,
+    src: "/gallery/yoga-3.jpg",
+    title: "The Yoga Institute - RYS-500/RYT-500 yoga alliance certification",
+    size: "tall",
+  },
+  {
+    id: 3,
+    src: "/gallery/yoga-5.jpg",
+    title: "WEE- Event Participation",
+    size: "small",
+  },
+  {
+    id: 4,
+    src: "/gallery/yoga-2.jpg",
+    title: "WEE- Certificate of Appreciation",
+    size: "tall",
+    badge: "Award",
+  },
+  {
+    id: 5,
+    src: "/gallery/yoga-6.jpg",
+    title: "Corporate Wellness Retreat",
+    size: "small",
+    badge: "Award",
+  },
+  {
+    id: 6,
+    src: "/gallery/yoga-4.jpg",
+    title: "WEE- Event Participation",
+    size: "small",
+  },
+  {
+    id: 7,
+    src: "/gallery/yoga-7.jpg",
+    title: "Corporate Wellness Retreat",
+    size: "small",
+  },
+];
+
 const testimonials = [
   {
     quote:
@@ -109,12 +158,7 @@ const testimonials = [
     image: "/testimonials/meghna-saraf.jpg",
   },
   {
-    quote: `It's been couple of years I have been practicing yoga with Sangeeta.
-      * There has been improvement in my balancing.
-      * Body has become more flexible.
-      * My sinus has come in control to a large extent.
-      Previously due to a fall I had reduced right leg ankle mobility. With yoga now my ankle movements are back to normal. My thyroid medicine dosage has also reduced.
-      Thank you Sangeeta for teaching us yoga in a right way.`,
+    quote: `It's been couple of years I have been practicing yoga with Sangeeta.\n* There has been improvement in my balancing.\n* Body has become more flexible.\n* My sinus has come in control to a large extent.\nPreviously due to a fall I had reduced right leg ankle mobility. With yoga now my ankle movements are back to normal. My thyroid medicine dosage has also reduced.\nThank you Sangeeta for teaching us yoga in a right way.`,
     author: "Dipali Deshmukh",
     role: "Finance professional",
     image: "/testimonials/dipali.jpg",
@@ -136,15 +180,29 @@ export default function Home() {
   const [isTestimonialsAutoPlaying, setIsTestimonialsAutoPlaying] =
     useState(true);
   const [visibleTestimonials, setVisibleTestimonials] = useState(1);
+  // Optimized Layout Spanning Logic for Bento Grid
+  const getGridClasses = (size: string) => {
+    switch (size) {
+      case "large":
+        // 2x2 on Mobile(2-col) and Desktop(4-col)
+        return "col-span-2 row-span-2";
+      case "tall":
+        // 1x2 on all screens
+        return "col-span-1 row-span-2";
+      case "wide":
+        // 2x1 on all screens
+        return "col-span-2 row-span-1";
+      default:
+        // 1x1 on all screens
+        return "col-span-1 row-span-1";
+    }
+  };
 
-  // Carousel Auto-play
   useEffect(() => {
     if (!isAutoPlaying) return;
-
     const interval = setInterval(() => {
       setActiveFeature((prev) => (prev + 1) % features.length);
     }, 5000);
-
     return () => clearInterval(interval);
   }, [isAutoPlaying]);
 
@@ -152,11 +210,10 @@ export default function Home() {
     if (typeof window === "undefined") return;
 
     const ctx = gsap.context(() => {
-      // Hero Timeline Animation
+      // Hero Timeline
       const heroTimeline = gsap.timeline({
         defaults: { ease: "power3.out", duration: 0.8 },
       });
-
       heroTimeline
         .fromTo(
           ".hero-title",
@@ -176,7 +233,7 @@ export default function Home() {
           "-=0.6"
         );
 
-      // Floating decorative elements
+      // Floating Leaves
       gsap.to(".floating-leaf", {
         y: -20,
         rotation: 5,
@@ -187,7 +244,7 @@ export default function Home() {
         stagger: 0.5,
       });
 
-      // Features Section ScrollTrigger
+      // Features Cards
       gsap.fromTo(
         ".feature-card",
         { opacity: 0, y: 60 },
@@ -197,15 +254,11 @@ export default function Home() {
           duration: 0.8,
           stagger: 0.2,
           ease: "power3.out",
-          scrollTrigger: {
-            trigger: ".features-section",
-            start: "top 80%",
-            toggleActions: "play none none none",
-          },
+          scrollTrigger: { trigger: ".features-section", start: "top 80%" },
         }
       );
 
-      // Specializations ScrollTrigger
+      // Specializations
       gsap.fromTo(
         ".spec-content",
         { opacity: 0, x: -50 },
@@ -217,11 +270,9 @@ export default function Home() {
           scrollTrigger: {
             trigger: ".specializations-section",
             start: "top 70%",
-            toggleActions: "play none none none",
           },
         }
       );
-
       gsap.fromTo(
         ".spec-tag",
         { opacity: 0, scale: 0.8 },
@@ -234,28 +285,26 @@ export default function Home() {
           scrollTrigger: {
             trigger: ".specializations-section",
             start: "top 70%",
-            toggleActions: "play none none none",
           },
         }
       );
 
+      // NEW: Bento Gallery Animation
       gsap.fromTo(
-        ".spec-image",
-        { opacity: 0, scale: 0.9 },
+        ".gallery-item",
+        { opacity: 0, scale: 0.95, y: 30 },
         {
           opacity: 1,
           scale: 1,
-          duration: 1,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: ".specializations-section",
-            start: "top 70%",
-            toggleActions: "play none none none",
-          },
+          y: 0,
+          duration: 0.8,
+          stagger: 0.15,
+          ease: "power2.out",
+          scrollTrigger: { trigger: ".gallery-section", start: "top 70%" },
         }
       );
 
-      // Testimonials ScrollTrigger
+      // Testimonials
       gsap.fromTo(
         ".testimonial-card",
         { opacity: 0, y: 60 },
@@ -265,15 +314,11 @@ export default function Home() {
           duration: 0.8,
           stagger: 0.15,
           ease: "power3.out",
-          scrollTrigger: {
-            trigger: ".testimonials-section",
-            start: "top 75%",
-            toggleActions: "play none none none",
-          },
+          scrollTrigger: { trigger: ".testimonials-section", start: "top 75%" },
         }
       );
 
-      // CTA ScrollTrigger
+      // CTA Content
       gsap.fromTo(
         ".cta-content",
         { opacity: 0, y: 40 },
@@ -282,15 +327,11 @@ export default function Home() {
           y: 0,
           duration: 1,
           ease: "power3.out",
-          scrollTrigger: {
-            trigger: ".cta-section",
-            start: "top 80%",
-            toggleActions: "play none none none",
-          },
+          scrollTrigger: { trigger: ".cta-section", start: "top 80%" },
         }
       );
 
-      // Parallax Background Effect
+      // Parallax
       gsap.to(".hero-bg", {
         y: 150,
         ease: "none",
@@ -303,24 +344,15 @@ export default function Home() {
       });
     }, containerRef);
 
-    return () => {
-      ctx.revert();
-    };
+    return () => ctx.revert();
   }, []);
 
-  // Testimonials Auto-play with visible count
   useEffect(() => {
     if (!isTestimonialsAutoPlaying) return;
-
     const maxIndex = Math.max(0, testimonials.length - visibleTestimonials);
-
     const interval = setInterval(() => {
-      setActiveTestimonial((prev) => {
-        if (prev >= maxIndex) return 0;
-        return prev + 1;
-      });
+      setActiveTestimonial((prev) => (prev >= maxIndex ? 0 : prev + 1));
     }, 6000);
-
     return () => clearInterval(interval);
   }, [isTestimonialsAutoPlaying, visibleTestimonials]);
 
@@ -328,47 +360,35 @@ export default function Home() {
     setIsTestimonialsAutoPlaying(false);
     setActiveTestimonial((prev) => Math.max(0, prev - 1));
   };
-
   const handleTestimonialsNext = () => {
     setIsTestimonialsAutoPlaying(false);
     const maxIndex = Math.max(0, testimonials.length - visibleTestimonials);
     setActiveTestimonial((prev) => Math.min(maxIndex, prev + 1));
   };
-
   const handleTestimonialsDotClick = (index: number) => {
     setIsTestimonialsAutoPlaying(false);
     setActiveTestimonial(index);
   };
-
   const handlePrevious = () => {
     setIsAutoPlaying(false);
     setActiveFeature((prev) => (prev - 1 + features.length) % features.length);
   };
-
   const handleNext = () => {
     setIsAutoPlaying(false);
     setActiveFeature((prev) => (prev + 1) % features.length);
   };
-
   const handleDotClick = (index: number) => {
     setIsAutoPlaying(false);
     setActiveFeature(index);
   };
 
-  // Track visible testimonials based on viewport
   useEffect(() => {
     if (typeof window === "undefined") return;
-
     const updateVisible = () => {
-      if (window.innerWidth >= 1024) {
-        setVisibleTestimonials(3); // Desktop:  3 cards
-      } else if (window.innerWidth >= 640) {
-        setVisibleTestimonials(2); // Tablet: 2 cards
-      } else {
-        setVisibleTestimonials(1); // Mobile: 1 card
-      }
+      if (window.innerWidth >= 1024) setVisibleTestimonials(3);
+      else if (window.innerWidth >= 640) setVisibleTestimonials(2);
+      else setVisibleTestimonials(1);
     };
-
     updateVisible();
     window.addEventListener("resize", updateVisible);
     return () => window.removeEventListener("resize", updateVisible);
@@ -378,12 +398,8 @@ export default function Home() {
     <div ref={containerRef} className="relative overflow-hidden">
       {/* Hero Section */}
       <section className="hero-section relative min-h-[85vh] sm:min-h-[90vh] flex items-center overflow-hidden">
-        {/* Background Image Overlay - RESPONSIVE IMAGES */}
         <div className="hero-bg absolute inset-0">
-          {/* Gradient Overlay for Text Readability */}
-          {/* Dark Overlay */}
           <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent z-10" />
-          {/* Mobile Image (Portrait - Height > Width) */}
           <Image
             src="/hero-mobile.jpg"
             alt="Yoga Hero Mobile"
@@ -393,8 +409,6 @@ export default function Home() {
             sizes="100vw"
             quality={75}
           />
-
-          {/* Desktop/Tablet Image (Landscape - Width > Height) */}
           <Image
             src="/hero-image.jpg"
             alt="Yoga Hero Desktop"
@@ -404,8 +418,6 @@ export default function Home() {
             sizes="100vw"
           />
         </div>
-
-        {/* Content */}
         <div className="relative z-20 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 sm:py-20 w-full">
           <div className="max-w-4xl">
             <h1 className="hero-title text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight text-foreground mb-4 sm:mb-6">
@@ -414,8 +426,8 @@ export default function Home() {
               Through Personalized Yoga!
             </h1>
             <p className="hero-description text-base sm:text-lg text-muted-foreground mb-6 sm:mb-8 max-w-lg">
-              Welcome to Sangeeta's Yoga Classes. Experience the healing power
-              of yoga through online group classes and personal sessions.
+              Welcome to Sangeeta&apos;s Yoga Classes. Experience the healing
+              power of yoga through online group classes and personal sessions.
             </p>
             <div className="hero-buttons flex flex-col sm:flex-row gap-3 sm:gap-4">
               <Button
@@ -424,7 +436,7 @@ export default function Home() {
                 asChild
               >
                 <Link href="/contact">
-                  Book A Session
+                  Book A Session{" "}
                   <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
                 </Link>
               </Button>
@@ -435,7 +447,7 @@ export default function Home() {
                 asChild
               >
                 <Link href="/contact">
-                  Contact Us
+                  Contact Us{" "}
                   <Call className="ml-2 h-5 w-5 group-hover:rotate-12 transition-transform duration-200" />
                 </Link>
               </Button>
@@ -445,29 +457,19 @@ export default function Home() {
       </section>
 
       {/* Features Section */}
-      <section className="features-section relative section-padding py-16 sm:py-24 lg:py-32 overflow-hidden">
-        {/* Animated Background */}
+      <section className="features-section relative py-16 sm:py-24 lg:py-32 overflow-hidden">
         <div className="absolute inset-0">
-          {/* Gradient Orbs */}
           <div className="absolute top-20 left-10 w-64 h-64 sm:w-96 sm:h-96 bg-earth-brown/10 rounded-full blur-3xl animate-pulse" />
           <div
             className="absolute bottom-20 right-10 w-48 h-48 sm:w-80 sm:h-80 bg-lotus-beige/30 rounded-full blur-3xl animate-pulse"
             style={{ animationDelay: "1s" }}
           />
-
-          {/* Grid Pattern */}
           <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808008_1px,transparent_1px),linear-gradient(to_bottom,#80808008_1px,transparent_1px)] bg-[size:40px_40px]" />
-
-          {/* Radial Gradient */}
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,hsl(var(--lotus-beige))_0%,transparent_50%)] opacity-20" />
         </div>
-
         <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          {/* Section Header */}
           <div className="text-center mb-12 sm:mb-16 lg:mb-20">
             <div className="inline-flex items-center gap-2 px-4 py-2 bg-earth-brown/10 rounded-full text-earth-brown text-sm font-medium mb-4 sm:mb-6">
-              <Sparkles className="h-4 w-4" />
-              Our Services
+              <Sparkles className="h-4 w-4" /> Our Services
             </div>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-4 sm:mb-6 px-4">
               How Can I Help You?
@@ -477,167 +479,103 @@ export default function Home() {
               flexible yoga solutions that fit your schedule and goals.
             </p>
           </div>
-
-          {/* Desktop:  Card Grid*/}
-          {/* Now I want same height of all cards even if the content length varies */}
           <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 mb-12">
             {features.map((feature, index) => (
               <div key={index} className="feature-card group relative">
-                {/* Card Background with Gradient Border */}
                 <div className="absolute inset-0 bg-gradient-to-br from-earth-brown/5 to-lotus-beige/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-
                 <div className="relative p-6 lg:p-8 rounded-2xl bg-white border-2 border-earth-brown/20 group-hover:border-earth-brown transition-all duration-500 group-hover:shadow-2xl group-hover:-translate-y-3 h-full">
-                  {/* Decorative Corner */}
-                  <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-earth-brown/10 to-transparent rounded-bl-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-
-                  {/* Icon Container */}
-                  <div className="relative mb-6">
-                    <div className="w-14 h-14 lg:w-16 lg:h-16 rounded-2xl bg-gradient-to-br from-earth-brown/10 to-earth-brown/5 flex items-center justify-center group-hover:scale-110 transition-all duration-500">
-                      <feature.icon className="h-7 w-7 lg:h-8 lg:w-8 text-earth-brown group-hover:scale-110 transition-transform duration-500" />
-                    </div>
-                    {/* Glow Effect */}
-                    <div className="absolute inset-0 w-14 h-14 lg:w-16 lg:h-16 rounded-2xl bg-earth-brown/20 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  <div className="w-14 h-14 lg:w-16 lg:h-16 rounded-2xl bg-earth-brown/10 flex items-center justify-center mb-6">
+                    <feature.icon className="h-7 w-7 lg:h-8 lg:w-8 text-earth-brown" />
                   </div>
-
-                  {/* Content */}
-                  <h3 className="text-xl lg:text-2xl xl:text-3xl font-bold text-foreground mb-3 group-hover:text-earth-brown transition-colors duration-300">
+                  <h3 className="text-xl lg:text-2xl font-bold text-foreground mb-3">
                     {feature.title}
                   </h3>
                   <p className="text-sm lg:text-base text-muted-foreground leading-relaxed mb-6">
                     {feature.description}
                   </p>
-
-                  {/* Learn More Link */}
-                  {/* redirect to /classes if feature.title are online classes and personal sessions else to /contact */}
-                  {feature.title === "Online Classes" || feature.title === "Personal Sessions" ? (
-                    <Link
-                      href="/classes"
-                      className="text-earth-brown font-medium text-sm flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:gap-3"
-                    >Classes <ArrowRight className="h-4 w-4" /></Link>  
-                  ) : (
-                    <Link
-                      href="/contact"
-                      className="text-earth-brown font-medium text-sm flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:gap-3"
-                    >Contact Us <ArrowRight className="h-4 w-4" /></Link>
-                  )}
-
-                  {/* Number Badge */}
-                  <div className="absolute bottom-4 right-4 w-10 h-10 rounded-full bg-earth-brown/5 flex items-center justify-center text-earth-brown/30 font-bold text-lg group-hover:bg-earth-brown group-hover:text-white transition-all duration-500">
-                    {index + 1}
-                  </div>
+                  <Link
+                    href={
+                      feature.title.includes("Classes") ||
+                      feature.title.includes("Sessions")
+                        ? "/classes"
+                        : "/contact"
+                    }
+                    className="text-earth-brown font-medium text-sm flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-all duration-300"
+                  >
+                    {feature.title.includes("Classes") ||
+                    feature.title.includes("Sessions")
+                      ? "View Classes"
+                      : "Contact Us"}{" "}
+                    <ArrowRight className="h-4 w-4" />
+                  </Link>
                 </div>
               </div>
             ))}
           </div>
-
-          {/* Mobile: Carousel */}
+          {/* Mobile Carousel */}
           <div className="md:hidden relative mb-12">
-            <div className="overflow-hidden rounded-2xl sm:rounded-3xl">
+            <div className="overflow-hidden rounded-2xl">
               <div
                 className="flex transition-transform duration-700 ease-out"
                 style={{ transform: `translateX(-${activeFeature * 100}%)` }}
               >
                 {features.map((feature, index) => (
-                  <div key={index} className="min-w-full px-3 sm:px-4">
-                    <div className="p-6 sm:p-8 rounded-2xl bg-white border-2 border-earth-brown/10 shadow-xl">
-                      {/* Icon */}
-                      <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-gradient-to-br from-earth-brown/10 to-earth-brown/5 flex items-center justify-center mb-4 sm:mb-6">
-                        <feature.icon className="h-7 w-7 sm:h-8 sm:w-8 text-earth-brown" />
+                  <div key={index} className="min-w-full px-3">
+                    <div className="p-6 rounded-2xl bg-white border-2 border-earth-brown/10 shadow-xl flex flex-col items-start h-full">
+                      <div className="w-14 h-14 rounded-2xl bg-earth-brown/10 flex items-center justify-center mb-4">
+                        <feature.icon className="h-7 w-7 text-earth-brown" />
                       </div>
-
-                      {/* Content */}
-                      <h3 className="text-xl sm:text-2xl font-bold text-foreground mb-3 sm:mb-4">
+                      <h3 className="text-xl font-bold text-foreground mb-2">
                         {feature.title}
                       </h3>
-                      <p className="text-sm sm:text-base text-muted-foreground leading-relaxed mb-4 sm:mb-6">
+                      <p className="text-sm text-muted-foreground leading-relaxed mb-4">
                         {feature.description}
                       </p>
-
-                      {/* Number Badge */}
-                      <div className="w-10 h-10 rounded-full bg-earth-brown text-white flex items-center justify-center font-bold text-lg">
-                        {index + 1}
-                      </div>
                     </div>
                   </div>
                 ))}
               </div>
             </div>
-
-            {/* Carousel Controls */}
-            <div className="flex items-center justify-center gap-3 sm:gap-4 mt-6 sm:mt-8">
-              {/* Previous Button */}
+            <div className="flex items-center justify-center gap-4 mt-6">
               <button
                 onClick={handlePrevious}
-                className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white border-2 border-earth-brown/20 flex items-center justify-center hover:bg-earth-brown hover:border-earth-brown hover:text-white transition-all duration-300 shadow-lg active:scale-95"
-                aria-label="Previous slide"
+                className="w-10 h-10 rounded-full border border-earth-brown/20 flex items-center justify-center shadow-lg"
               >
                 <ChevronLeft className="h-5 w-5" />
               </button>
-
-              {/* Dots Indicator */}
               <div className="flex gap-2">
-                {features.map((_, index) => (
+                {features.map((_, i) => (
                   <button
-                    key={index}
-                    onClick={() => handleDotClick(index)}
-                    className={`transition-all duration-300 rounded-full ${
-                      index === activeFeature
-                        ? "w-6 sm:w-8 h-2.5 sm:h-3 bg-earth-brown"
-                        : "w-2.5 sm:w-3 h-2.5 sm:h-3 bg-earth-brown/30 hover:bg-earth-brown/50"
+                    key={i}
+                    onClick={() => handleDotClick(i)}
+                    className={`transition-all rounded-full h-2.5 ${
+                      i === activeFeature
+                        ? "w-6 bg-earth-brown"
+                        : "w-2.5 bg-earth-brown/30"
                     }`}
-                    aria-label={`Go to slide ${index + 1}`}
                   />
                 ))}
               </div>
-
-              {/* Next Button */}
               <button
                 onClick={handleNext}
-                className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white border-2 border-earth-brown/20 flex items-center justify-center hover:bg-earth-brown hover:border-earth-brown hover:text-white transition-all duration-300 shadow-lg active:scale-95"
-                aria-label="Next slide"
+                className="w-10 h-10 rounded-full border border-earth-brown/20 flex items-center justify-center shadow-lg"
               >
                 <ChevronRight className="h-5 w-5" />
               </button>
             </div>
           </div>
-
-          {/* Stats Section */}
-          {/* <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
-            {[
-              { number: "500+", label: "Happy Students" },
-              { number: "5+", label: "Years Experience" },
-              { number: "100%", label: "Online Classes" },
-              { number: "24/7", label: "Support" },
-            ].map((stat, index) => (
-              <div
-                key={index}
-                className="text-center p-4 sm:p-6 rounded-xl sm:rounded-2xl bg-gradient-to-br from-earth-brown/5 to-lotus-beige/5 border border-earth-brown/10 hover:shadow-lg transition-all duration-300 hover:-translate-y-1"
-              >
-                <div className="text-2xl sm:text-3xl lg:text-4xl font-bold text-earth-brown mb-1 sm:mb-2">
-                  {stat.number}
-                </div>
-                <div className="text-xs sm:text-sm text-muted-foreground font-medium">
-                  {stat.label}
-                </div>
-              </div>
-            ))}
-          </div> */}
         </div>
       </section>
 
       {/* Specializations Section */}
-      <section className="specializations-section relative section-padding py-16 sm:py-20 bg-gradient-to-br from-lotus-beige-light to-background">
-        {/* Decorative Elements */}
-        <div className="absolute top-10 right-0 w-48 h-48 sm:w-64 sm:h-64 bg-earth-brown/5 rounded-full blur-3xl" />
-        <div className="absolute bottom-10 left-0 w-64 h-64 sm:w-96 sm:h-96 bg-lotus-beige/20 rounded-full blur-3xl" />
-
-        <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center">
+      <section className="specializations-section relative py-16 sm:py-20 bg-gradient-to-br from-lotus-beige-light to-background">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-8 items-center">
             <div className="spec-content order-2 lg:order-1">
-              <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4 sm:mb-6">
+              <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-6">
                 Yoga That Addresses Your Specific Needs
               </h2>
-              <p className="text-base sm:text-lg text-muted-foreground mb-6 sm:mb-8">
+              <p className="text-base text-muted-foreground mb-8">
                 Every body is different. I specialize in creating customized
                 yoga programs that address your unique health concerns and
                 fitness goals.
@@ -646,59 +584,100 @@ export default function Home() {
                 {specializations.map((spec, index) => (
                   <span
                     key={index}
-                    className="spec-tag px-3 sm:px-4 py-1.5 sm:py-2 bg-white/80 backdrop-blur-sm text-foreground rounded-full text-xs sm:text-sm font-medium border border-earth-brown/20 hover:bg-primary hover:text-white hover:border-primary transition-all duration-300 cursor-pointer shadow-sm"
+                    className="spec-tag px-3 py-1.5 bg-white text-foreground rounded-full text-xs sm:text-sm font-medium border border-earth-brown/20 hover:bg-earth-brown hover:text-white transition-all cursor-pointer shadow-sm"
                   >
                     {spec}
                   </span>
                 ))}
               </div>
-              <Button className="mt-6 sm:mt-8 group w-full sm:w-auto" asChild>
+              <Button className="mt-8 group" asChild>
                 <Link href="/classes">
-                  View All Services
-                  <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                  View All Services{" "}
+                  <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1" />
                 </Link>
               </Button>
             </div>
             <div className="spec-image relative order-1 lg:order-2">
-              <div className="aspect-square rounded-2xl overflow-hidden shadow-2xl border-2 sm:border-4 border-earth-brown/10">
+              <div className="aspect-square rounded-2xl overflow-hidden shadow-2xl border-4 border-earth-brown/10">
                 <Image
                   src="/specializations-image.jpg"
                   alt="Yoga Specializations"
-                  width={600}
-                  height={600}
-                  className="object-cover w-full h-full"
-                  quality={75}
-                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 500px"
+                  fill
+                  className="object-cover"
                 />
               </div>
-              {/* Decorative corner accents */}
-              <div className="absolute -top-3 -left-3 sm:-top-4 sm:-left-4 w-16 h-16 sm:w-20 sm:h-20 border-t-3 border-l-3 sm:border-t-4 sm:border-l-4 border-earth-brown/20 rounded-tl-2xl" />
-              <div className="absolute -bottom-3 -right-3 sm:-bottom-4 sm:-right-4 w-16 h-16 sm:w-20 sm:h-20 border-b-3 border-r-3 sm:border-b-4 sm:border-r-4 border-earth-brown/20 rounded-br-2xl" />
             </div>
           </div>
         </div>
       </section>
 
-      {/* Testimonials Section */}
-      {/* Testimonials Section - Responsive Multi-Card Carousel */}
-      <section className="testimonials-section relative section-padding bg-background py-16 sm:py-20">
-        {/* Background Pattern */}
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]" />
+      {/* GALLERY SECTION: Optimized for Mobile & Tablet */}
+      <section className="gallery-section relative py-16 sm:py-24 lg:py-32 bg-background overflow-hidden">
+        <div className="mx-auto max-w-7xl px-4 relative z-10">
+          <div className="text-center mb-12">
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-earth-brown/10 rounded-full text-earth-brown text-sm font-medium mb-4">
+              <Camera className="h-4 w-4" /> Moments & Milestones
+            </div>
+            <h2 className="text-3xl sm:text-5xl font-bold mb-4">
+              Our Journey in Frames
+            </h2>
+            <p className="text-muted-foreground max-w-2xl mx-auto">
+              A glimpse into our daily practice, specialized workshops, and
+              certifications.
+            </p>
+          </div>
 
+          {/* GRID STRATEGY:
+              - Mobile: grid-cols-2, auto-rows-[160px] (Smaller rows so 2-rows isn't huge)
+              - Tablet: md:grid-cols-3, md:auto-rows-[180px]
+              - Desktop: lg:grid-cols-4, lg:auto-rows-[220px]
+          */}
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-6 auto-rows-[160px] sm:auto-rows-[180px] md:auto-rows-[200px] lg:auto-rows-[220px]">
+            {galleryImages.map((image) => (
+              <div
+                key={image.id}
+                className={`gallery-item group relative rounded-xl sm:rounded-2xl overflow-hidden border border-earth-brown/10 ${getGridClasses(
+                  image.size
+                )}`}
+              >
+                <Image
+                  src={image.src}
+                  alt={image.title}
+                  fill
+                  className="object-cover transition-transform duration-700 group-hover:scale-110"
+                  sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 25vw"
+                />
+                {image.badge && (
+                  <div className="absolute top-2 left-2 sm:top-4 sm:left-4 z-20 flex items-center gap-1.5 px-2 py-0.5 sm:px-3 sm:py-1 bg-white/90 backdrop-blur rounded-full text-earth-brown text-[10px] sm:text-xs font-bold shadow-sm">
+                    <Award className="h-3 w-3" /> {image.badge}
+                  </div>
+                )}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 flex flex-col justify-end p-3 sm:p-6">
+                  <h3 className="text-white font-bold text-xs sm:text-sm lg:text-lg line-clamp-2">
+                    {image.title}
+                  </h3>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonials Section */}
+      <section className="testimonials-section relative bg-background py-16 sm:py-20">
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]" />
         <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12 sm:mb-16">
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-3 sm:mb-4">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-4 px-4">
               What My Students Say
             </h2>
-            <p className="text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto px-4">
+            <p className="text-base text-muted-foreground max-w-2xl mx-auto px-4">
               Real transformations from real people who trusted their yoga
               journey with me.
             </p>
           </div>
-
-          {/* Multi-Card Carousel */}
           <div className="relative">
-            <div className="overflow-hidden rounded-2xl sm:rounded-3xl">
+            <div className="overflow-hidden rounded-2xl">
               <div
                 className="flex transition-transform duration-700 ease-out"
                 style={{
@@ -710,166 +689,100 @@ export default function Home() {
                 {testimonials.map((testimonial, index) => (
                   <div
                     key={index}
-                    className="flex-shrink-0 px-2 sm:px-3 lg:px-4"
-                    style={{
-                      width: `${100 / visibleTestimonials}%`,
-                    }}
+                    className="flex-shrink-0 px-2 sm:px-4"
+                    style={{ width: `${100 / visibleTestimonials}%` }}
                   >
-                    <div className="h-full p-4 sm:p-6 lg:p-8 rounded-2xl bg-card/80 backdrop-blur-sm border border-earth-brown/20 hover:border-earth-brown hover:shadow-2xl transition-all duration-300 relative overflow-hidden">
-                      {/* Decorative corner */}
-                      <div className="absolute top-0 right-0 w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-earth-brown/10 to-transparent rounded-bl-full" />
-
-                      {/* Stars */}
-                      <div className="flex gap-0. 5 sm:gap-1 mb-3 sm:mb-4 text-primary relative z-10">
+                    <div className="h-full p-6 sm:p-8 rounded-2xl bg-card border border-earth-brown/20 hover:border-earth-brown hover:shadow-2xl transition-all duration-300 relative">
+                      <div className="flex gap-1 mb-4 text-primary">
                         {[1, 2, 3, 4, 5].map((i) => (
-                          <Star
-                            key={i}
-                            className="h-3 w-3 sm:h-4 sm:w-4 lg:h-5 lg:w-5 fill-current"
-                          />
+                          <Star key={i} className="h-4 w-4 fill-current" />
                         ))}
                       </div>
-
-                      {/* Quote */}
-                      <p className="text-xs sm:text-sm lg:text-base text-foreground mb-4 sm:mb-6 italic relative z-10 leading-relaxed line-clamp-6">
+                      <p className="text-sm italic leading-relaxed mb-6">
                         &ldquo;{testimonial.quote}&rdquo;
                       </p>
-
-                      {/* Author Info */}
-                      <div className="relative z-10 flex items-end justify-between gap-2">
+                      <div className="flex items-center gap-4">
+                        <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-earth-brown/30 relative flex-shrink-0">
+                          {testimonial.image && (
+                            <Image
+                              src={testimonial.image}
+                              alt={testimonial.author}
+                              fill
+                              className="object-cover"
+                            />
+                          )}
+                        </div>
                         <div className="min-w-0">
-                          <p className="font-semibold text-foreground text-xs sm:text-sm lg:text-base truncate">
+                          <p className="font-bold text-sm lg:text-base truncate">
                             {testimonial.author}
                           </p>
-                          <p className="text-[10px] sm:text-xs lg:text-sm text-muted-foreground truncate">
+                          <p className="text-xs text-muted-foreground truncate">
                             {testimonial.role}
                           </p>
                         </div>
-
-                        {testimonial.image && (
-                          <div className="w-10 h-10 sm:w-12 sm:h-12 lg:w-14 lg:h-14 rounded-full overflow-hidden border-2 border-earth-brown/30 flex-shrink-0 shadow-md">
-                            <Image
-                              src={testimonial.image}
-                              alt={`${testimonial.author} photo`}
-                              width={56}
-                              height={56}
-                              className="object-cover w-full h-full"
-                            />
-                          </div>
-                        )}
                       </div>
                     </div>
                   </div>
                 ))}
               </div>
             </div>
-
-            {/* Carousel Controls */}
-            <div className="flex items-center justify-center gap-3 sm:gap-4 mt-6 sm:mt-8">
-              {/* Previous Button */}
+            <div className="flex items-center justify-center gap-4 mt-8">
               <button
                 onClick={handleTestimonialsPrevious}
                 disabled={activeTestimonial === 0}
-                className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white border-2 border-earth-brown/20 flex items-center justify-center hover:bg-earth-brown hover:border-earth-brown hover:text-white transition-all duration-300 shadow-lg active: scale-95 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-white disabled:hover:text-foreground"
-                aria-label="Previous testimonials"
+                className="w-12 h-12 rounded-full border border-earth-brown/20 flex items-center justify-center shadow-lg disabled:opacity-30"
               >
                 <ChevronLeft className="h-5 w-5" />
               </button>
-
-              {/* Dots Indicator */}
-              <div className="flex gap-2">
-                {Array.from({
-                  length: Math.max(
-                    1,
-                    testimonials.length - visibleTestimonials + 1
-                  ),
-                }).map((_, index) => (
-                  <button
-                    key={index}
-                    onClick={() => handleTestimonialsDotClick(index)}
-                    className={`transition-all duration-300 rounded-full ${
-                      index === activeTestimonial
-                        ? "w-6 sm:w-8 h-2.5 sm:h-3 bg-earth-brown"
-                        : "w-2.5 sm:w-3 h-2.5 sm:h-3 bg-earth-brown/30 hover:bg-earth-brown/50"
-                    }`}
-                    aria-label={`Go to testimonials page ${index + 1}`}
-                  />
-                ))}
-              </div>
-
-              {/* Next Button */}
               <button
                 onClick={handleTestimonialsNext}
                 disabled={
                   activeTestimonial >= testimonials.length - visibleTestimonials
                 }
-                className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white border-2 border-earth-brown/20 flex items-center justify-center hover:bg-earth-brown hover:border-earth-brown hover:text-white transition-all duration-300 shadow-lg active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-white disabled: hover:text-foreground"
-                aria-label="Next testimonials"
+                className="w-12 h-12 rounded-full border border-earth-brown/20 flex items-center justify-center shadow-lg disabled:opacity-30"
               >
                 <ChevronRight className="h-5 w-5" />
               </button>
-            </div>
-
-            {/* Auto-play Indicator */}
-            <div className="mt-4 text-center">
-              <p className="text-xs sm:text-sm text-muted-foreground">
-                {isTestimonialsAutoPlaying
-                  ? "Auto-playing..."
-                  : "Auto-play paused"}
-              </p>
             </div>
           </div>
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="cta-section relative section-padding py-20 sm:py-24 lg:py-32 overflow-hidden">
-        {/* Background Image */}
+      <section className="cta-section relative py-20 sm:py-32 overflow-hidden bg-earth-brown">
         <div className="absolute inset-0 z-0">
           <Image
             src="/cta-background.jpg"
             alt="Yoga CTA Background"
             fill
-            className="object-cover object-center"
+            className="object-cover opacity-80"
             quality={75}
-            sizes="100vw"
           />
-          {/* Dark Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-br from-earth-brown/80 via-earth-brown-dark/70 to-earth-brown/80" />
-
-          {/* Pattern Overlay */}
-          <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff08_1px,transparent_1px),linear-gradient(to_bottom,#ffffff08_1px,transparent_1px)] bg-[size:40px_40px]" />
-
-          {/* Decorative Blur Circles */}
-          <div className="absolute top-0 left-1/4 w-64 h-64 sm:w-96 sm:h-96 bg-lotus-beige/10 rounded-full blur-3xl" />
-          <div className="absolute bottom-0 right-1/4 w-48 h-48 sm:w-72 sm:h-72 bg-white/10 rounded-full blur-3xl" />
+          <div className="absolute inset-0 bg-gradient-to-br from-earth-brown/90 via-earth-brown-dark/70 to-earth-brown/90" />
         </div>
-
-        {/* Content */}
-        <div className="relative z-10 mx-auto max-w-4xl text-center px-4 sm:px-6 lg:px-8">
+        <div className="relative z-10 mx-auto max-w-4xl text-center px-4">
           <div className="cta-content">
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4 sm:mb-6 drop-shadow-lg">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6">
               Ready to Begin Your Transformation?
             </h2>
-            <p className="text-base sm:text-lg lg:text-xl text-white/90 mb-8 sm:mb-10 max-w-2xl mx-auto drop-shadow-md px-4">
+            <p className="text-lg text-white/90 mb-10 max-w-2xl mx-auto">
               Take the first step towards a healthier, more balanced life. Book
-              a free consultation call to discuss your goals and find the
-              perfect yoga program for you.
+              a free consultation call to discuss your goals.
             </p>
-            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center px-4">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button
                 size="lg"
+                className="bg-white text-earth-brown hover:bg-earth-brown hover:text-white transition-all shadow-xl"
                 asChild
-                className="group bg-earth-brown text-white hover:bg-white hover:text-earth-brown shadow-2xl hover:shadow-white/20 transition-all w-full sm:w-auto"
               >
                 <Link href="/contact">
-                  Book Free Consultation
-                  <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                  Book Free Consultation <ArrowRight className="ml-2 h-5 w-5" />
                 </Link>
               </Button>
               <Button
                 size="lg"
                 variant="outline"
-                className="border-2 border-white text-white hover:bg-white hover:text-earth-brown shadow-2xl backdrop-blur-sm bg-white/10 w-full sm:w-auto"
+                className="border-2 border-white text-white hover:bg-white hover:text-earth-brown shadow-2xl backdrop-blur-sm bg-white/10"
                 asChild
               >
                 <a
@@ -880,30 +793,6 @@ export default function Home() {
                   WhatsApp Us
                 </a>
               </Button>
-            </div>
-
-            {/* Trust Indicators */}
-            <div className="mt-10 sm:mt-12 pt-6 sm:pt-8 border-t border-white/20">
-              <div className="flex flex-wrap justify-center items-center gap-4 sm:gap-6 lg:gap-8 text-white/80 px-4">
-                <div className="flex items-center gap-2">
-                  <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 text-white flex-shrink-0" />
-                  <span className="text-xs sm:text-sm font-medium">
-                    5+ Years Experience
-                  </span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 text-white flex-shrink-0" />
-                  <span className="text-xs sm:text-sm font-medium">
-                    All Time Guidance
-                  </span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 text-white flex-shrink-0" />
-                  <span className="text-xs sm:text-sm font-medium">
-                    Available Worldwide
-                  </span>
-                </div>
-              </div>
             </div>
           </div>
         </div>

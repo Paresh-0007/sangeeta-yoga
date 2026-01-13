@@ -56,7 +56,8 @@ export const metadata: Metadata = {
     "stress management yoga",
     "PCOD yoga",
     "diabetes yoga",
-    // "prenatal yoga",
+    "prenatal yoga",
+    "postnatal yoga",
     "corporate wellness yoga",
     "certified yoga instructor India",
     "yoga teacher in Mumbai",
@@ -89,9 +90,9 @@ export const metadata: Metadata = {
       "Personalized yoga classes for women, men, and corporate offices. Online and offline sessions in Mumbai by certified yoga instructor Sangeeta.",
     images: [
       {
-        url: "/hero-image.jpg", // 1200x630 recommended
-        width: 1200,
-        height: 630,
+        url: "//specializations-image.jpg", // 1200x630 recommended
+        width: 870,
+        height: 1280,
         alt: "StayFit with Sangeeta – Online & Offline Yoga Classes in Mumbai",
       },
     ],
@@ -102,7 +103,7 @@ export const metadata: Metadata = {
     title: "StayFit with Sangeeta | Online & Offline Yoga Classes in Mumbai",
     description:
       "Personalized yoga programs for PCOD, weight loss, stress management & corporate wellness. Online and offline classes available.",
-    images: ["/hero-image.jpg"],
+    images: ["/specializations-image.jpg"],
     creator: "@sangeetayoga", // replace if different
   },
 
@@ -127,9 +128,9 @@ export const metadata: Metadata = {
     ],
     apple: [
       {
-        url: "/apple-icon.png",
-        sizes: "180x180",
-        type: "image/png",
+        url: "/specializations-image.jpg",
+        sizes: "870x1280",
+        type: "image/jpg",
       },
     ],
   },

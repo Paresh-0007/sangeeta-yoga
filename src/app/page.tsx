@@ -397,9 +397,10 @@ export default function Home() {
   return (
     <div ref={containerRef} className="relative overflow-hidden">
       {/* Hero Section */}
-      <section className="hero-section relative min-h-[85vh] sm:min-h-[90vh] flex items-center overflow-hidden">
+      {/* Hero Section */}
+      <section className="hero-section relative min-h-[85vh] sm:min-h-[90vh] flex items-end md:items-start overflow-hidden">
         <div className="hero-bg absolute inset-0">
-          <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent z-10" />
+          <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-transparent z-10" />
           <Image
             src="/hero-mobile.jpg"
             alt="Yoga Hero Mobile"
@@ -418,18 +419,19 @@ export default function Home() {
             sizes="100vw"
           />
         </div>
-        <div className="relative z-20 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 sm:py-20 w-full">
-          <div className="max-w-4xl">
+
+        <div className="relative z-20 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pb-12 pt-12 md:pb-0 md:pt-32 w-full">
+          <div className="max-w-4xl mx-auto md:mx-0 text-center md:text-left">
             <h1 className="hero-title text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight text-foreground mb-4 sm:mb-6">
               Transform Your Life,
               <br />
               Through Personalized Yoga!
             </h1>
-            <p className="hero-description text-base sm:text-lg text-muted-foreground mb-6 sm:mb-8 max-w-lg">
+            <p className="hero-description text-base sm:text-lg text-muted-foreground mb-6 sm:mb-8 max-w-lg mx-auto md:mx-0">
               Welcome to Sangeeta&apos;s Yoga Classes. Experience the healing
               power of yoga through online group classes and personal sessions.
             </p>
-            <div className="hero-buttons flex flex-col sm:flex-row gap-3 sm:gap-4">
+            <div className="hero-buttons flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center md:justify-start">
               <Button
                 size="lg"
                 className="bg-earth-brown hover:bg-earth-brown-dark text-white group w-full sm:w-auto"

@@ -1,12 +1,10 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
-  allowedDevOrigins: [
-    "http://localhost:3000",
-    "https://transformational-sociably-lochlan.ngrok-free.dev",
-    "https://stayfitwithsangeeta.com",
-  ],
+  output: "export",
+  images: {
+    unoptimized: true,
+  },
 };
 
 export default nextConfig;

@@ -58,6 +58,8 @@ export function Header() {
         >
           <div className="flex h-20 items-center justify-between">
             {/* Logo */}
+            {/* Logo */}
+            {/* Logo */}
             <Link
               href="/"
               className="flex items-center gap-3 group relative z-10"
@@ -70,8 +72,8 @@ export function Header() {
                   height={40}
                   className="group-hover:scale-105 transition-transform duration-300"
                   priority
-                />  
-                <span className="font-heading text-3xl font-bold text-earth-brown-dark group-hover:text-earth-brown transition-colors">
+                />
+                <span className="font-heading text-xl lg:text-3xl font-bold text-earth-brown-dark group-hover:text-earth-brown transition-colors whitespace-nowrap">
                   stay fit with sangeeta
                 </span>
               </div>

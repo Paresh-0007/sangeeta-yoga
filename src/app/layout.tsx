@@ -111,8 +111,8 @@ export const metadata: Metadata = {
 
   icons: {
     icon: [
-      { url: "/favicon.ico", sizes: "any" },
-      { url: "/logo.png", type: "image/png", sizes: "32x32" },
+      { url: "/favicon.ico", sizes: "32x32" },
+      { url: "/logo.png", type: "image/png", sizes: "381x236" },
       { url: "/web-app-manifest-192x192.png", type: "image/png", sizes: "192x192" },
       { url: "/web-app-manifest-512x512.png", type: "image/png", sizes: "512x512" },
     ],

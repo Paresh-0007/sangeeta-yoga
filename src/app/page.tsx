@@ -129,7 +129,7 @@ const galleryImages = [
   },
   {
     id: 7,
-    src: "/gallery/yoga-7.jpg",
+    src: "/gallery/yoga-7-1.jpg",
     title: "Corporate Wellness Retreat",
     size: "small",
   },

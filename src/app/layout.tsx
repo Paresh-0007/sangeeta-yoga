@@ -90,23 +90,13 @@ export const metadata: Metadata = {
       "Personalized yoga classes for women, men, and corporate offices. Online and offline sessions in Mumbai by certified yoga instructor Sangeeta.",
     images: [
       {
-        url: "//specializations-image.jpg", // 1200x630 recommended
+        url: "//specializations-image.jpg",
         width: 870,
         height: 1280,
         alt: "StayFit with Sangeeta – Online & Offline Yoga Classes in Mumbai",
       },
     ],
   },
-
-  twitter: {
-    card: "summary_large_image",
-    title: "StayFit with Sangeeta | Online & Offline Yoga Classes in Mumbai",
-    description:
-      "Personalized yoga programs for PCOD, weight loss, stress management & corporate wellness. Online and offline classes available.",
-    images: ["/specializations-image.jpg"],
-    creator: "@sangeetayoga", // replace if different
-  },
-
   robots: {
     index: true,
     follow: true,
@@ -128,9 +118,9 @@ export const metadata: Metadata = {
     ],
     apple: [
       {
-        url: "/specializations-image.jpg",
-        sizes: "870x1280",
-        type: "image/jpg",
+        url: "/apple-icon.png",
+        sizes: "180x180",
+        type: "image/png",
       },
     ],
   },

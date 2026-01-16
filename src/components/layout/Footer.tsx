@@ -48,7 +48,7 @@ export function Footer() {
                 height={50}
                 className=""
               />
-              <span className="font-heading text-3xl font-bold text-white group-hover:text-lotus-beige transition-colors">
+              <span className="font-heading text-xl lg:text-3xl font-bold text-white group-hover:text-lotus-beige transition-colors">
                 stay fit with sangeeta
               </span>
             </Link>
